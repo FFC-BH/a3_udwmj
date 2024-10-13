@@ -1,20 +1,18 @@
 /*
 CRUD
 */
+import 'dart:io';
 
-import 'package:a3_udwmj/models.dart';
-import 'package:sqlite3/sqlite3.dart' show sqlite3;
-import 'package:sqlite3/src/ffi/api.dart';
-
+import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
 
 class db_sqlite{
 
-  final db = sqlite3.open('taskify.db');
-
-  @override
-  void criar() async {
-
-    db.execute('''
+  Future<Database> openMyDatabase() async {
+    return await openDatabase(join(databaseFactory.getDatabasesPath() as String, 'myToDoDatabase.db'), 
+                              version: 1, 
+                              onCreate: (db, version) {
+      return db.execute('''
             CREATE TABLE IF NOT EXISTS usuario (
               id INTEGER PRIMARY KEY AUTOINCREMENT,
               nome TEXT NOT NULL,
@@ -36,49 +34,29 @@ class db_sqlite{
               FOREIGN KEY (tarefaId) REFERENCES tarefa (id)
            );
            ''');
+      //Here we are creating a table named todoList with three columns: id, title, and status.
+      //The id column is the primary key and is set to autoincrement.    
+      //We use INTEGER for the status column because SQLite does not have a boolean data type.
+      //Instead, we use 0 for false and 1 for true.    
+    });
+  
   }
-
-  void insertUser(Usuario user) async {
+  
+  Future<void> insertUser(String nome, String email) async {
     
-    db.execute('''INSERT INTO usuarios (nome, email)
-              VALUES( ${user.nome}, ${user.email});''');
+    final db = await openMyDatabase();
+    
+    db.insert(
+        'usuario',
+        {
+          'nome': nome,
+          'email': email,          
+        },
+        conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
 
 
-}
 
-
-
-
-
-
-/*
-  db.execute(''' PRAGMA foreign_keys = ON;
-                 CREATE TABLE IF NOT EXISTS users 
-                    (id_user INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                     nome VARCHAR NOT NULL, 
-                     email VARCHAR NOT NULL, 
-                     senha VARCHAR NOT NULL
-                     );
-                 CREATE TABLE IF NOT EXISTS tasks
-                    (id_tsk INTEGER NOT NULL  PRIMARY KEY AUTOINCREMENT,
-                     id_userr INTEGER NOT NULL,
-                     status_tsk INTEGER NOT NULL,
-                     nome_tsk VARCHAR NOT NULL,
-                     descricao_tsk TEXT,
-                     dt_inicio VARCHAR NOT NULL,
-                     dt_fim VARCHAR,
-                     FOREING KEY (id_userr) REFERENCES users (id_user)                                         
-                     );''');                   
-*/
-
-//ON DELETE CASCADE
-//   ON UPDATE NO ACTION
-// FOREING KEY (id_user) REFERENCES users(id_user)
-// FOREING KEY (id_user) REFERENCES users(id_user)
-//CONSTRAINT pk_id_tsk PRIMARY KEY(id_tsk)
- // CONSTRAINT fk_id_tsk FOREING KEY(id_user) REFERENCES users(id_user)                     
-//  CONSTRAINT fk_id_tsk FOREING KEY (id_user) REFERENCES users(id_user) 
-
-
+   
+} 

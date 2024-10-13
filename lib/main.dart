@@ -9,13 +9,16 @@ Future<void> main() async {
 
   db_sqlite db_taskify = db_sqlite();
 
-  db_taskify.criar();
+  db_taskify.openMyDatabase();
 
-  Usuario user = Usuario();
+
+ 
+ // Usuario user = Usuario();
+
+
+ // user.set();
   
-  user.set('Fabiano Figueredo Chaves','ffc@gmail.com');
-  
-  db_taskify.insertUser(user);
+  db_taskify.insertUser('Fabiano Figueredo Chaves','ffc@gmail.com');
 
       
       
