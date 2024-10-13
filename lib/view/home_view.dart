@@ -17,7 +17,7 @@ class Home extends StatelessWidget {
         child: CircleAvatar(
           radius: 72.0,
           backgroundColor: Colors.transparent,
-          backgroundImage: AssetImage('assets/pexels-olly-3807755-removebg-preview 1.png'),
+          backgroundImage: AssetImage('assets/Estudante1.png'),
         ),
       ),
     );

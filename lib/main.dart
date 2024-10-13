@@ -1,15 +1,25 @@
 import 'package:a3_udwmj/view/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:a3_udwmj/db_sqlite.dart';
+import 'package:a3_udwmj/models.dart';
 
 
-
-void main() {
+Future<void> main() async {
   runApp(MainApp());
 
   db_sqlite db_taskify = db_sqlite();
 
   db_taskify.criar();
+
+  Usuario user = Usuario();
+  
+  user.set('Fabiano Figueredo Chaves','ffc@gmail.com');
+  
+  db_taskify.insertUser(user);
+
+      
+      
+
 
 }
 

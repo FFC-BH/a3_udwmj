@@ -2,7 +2,9 @@
 CRUD
 */
 
+import 'package:a3_udwmj/models.dart';
 import 'package:sqlite3/sqlite3.dart' show sqlite3;
+import 'package:sqlite3/src/ffi/api.dart';
 
 
 class db_sqlite{
@@ -13,30 +15,40 @@ class db_sqlite{
   void criar() async {
 
     db.execute('''
-            CREATE TABLE IF NOT EXISTS user (
+            CREATE TABLE IF NOT EXISTS usuario (
               id INTEGER PRIMARY KEY AUTOINCREMENT,
-              name TEXT NOT NULL,
+              nome TEXT NOT NULL,
               email TEXT NOT NULL
             );
-            CREATE TABLE IF NOT EXISTS task (
+            CREATE TABLE IF NOT EXISTS tarefa (
               id INTEGER PRIMARY KEY AUTOINCREMENT,
-              userId INTEGER,
-               title TEXT NOT NULL,
-                description TEXT,
-                dueDate TEXT,
-               isCompleted INTEGER NOT NULL,
-               FOREIGN KEY (userId) REFERENCES user (id)
+              usuarioId INTEGER,
+              titulo TEXT NOT NULL,
+              descricao TEXT,
+              data TEXT,
+              concluido INTEGER NOT NULL,
+              FOREIGN KEY (usuarioId) REFERENCES usuario (id)
             );
-            CREATE TABLE IF NOT EXISTS reminder (
+            CREATE TABLE IF NOT EXISTS lembrete (
               id INTEGER PRIMARY KEY AUTOINCREMENT,
-              taskId INTEGER,
-               reminderDate TEXT,
-              FOREIGN KEY (taskId) REFERENCES task (id)
+              tarefaId INTEGER,
+              data TEXT,
+              FOREIGN KEY (tarefaId) REFERENCES tarefa (id)
            );
            ''');
   }
 
+  void insertUser(Usuario user) async {
+    
+    db.execute('''INSERT INTO usuarios (nome, email)
+              VALUES( ${user.nome}, ${user.email});''');
+  }
+
+
+
 }
+
+
 
 
 
