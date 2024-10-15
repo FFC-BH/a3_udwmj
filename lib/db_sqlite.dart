@@ -1,18 +1,22 @@
 /*
 CRUD
 */
-import 'dart:io';
 
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart' show ConflictAlgorithm, Database, getDatabasesPath, openDatabase;
+
+// return await openDatabase('/home/fabiano/Documentos/Una/S2-2024/UDWMJ/Flutter/trabalho_a3/a3_udwmj/taskify.db', 
+
+// join(...) = .../a3_udwmj/.dart_tool/sqflite_common_ffi/databases/taskify.db
 
 class db_sqlite{
-
+  
   Future<Database> openMyDatabase() async {
-    return await openDatabase(join(databaseFactory.getDatabasesPath() as String, 'myToDoDatabase.db'), 
+    return await openDatabase(join(await getDatabasesPath(), 'taskify.db'),
                               version: 1, 
-                              onCreate: (db, version) {
-      return db.execute('''
+                              onCreate: (db, version) async {
+    return db.execute('''
             CREATE TABLE IF NOT EXISTS usuario (
               id INTEGER PRIMARY KEY AUTOINCREMENT,
               nome TEXT NOT NULL,
@@ -34,12 +38,9 @@ class db_sqlite{
               FOREIGN KEY (tarefaId) REFERENCES tarefa (id)
            );
            ''');
-      //Here we are creating a table named todoList with three columns: id, title, and status.
-      //The id column is the primary key and is set to autoincrement.    
-      //We use INTEGER for the status column because SQLite does not have a boolean data type.
-      //Instead, we use 0 for false and 1 for true.    
+      
     });
-  
+
   }
   
   Future<void> insertUser(String nome, String email) async {
@@ -53,10 +54,41 @@ class db_sqlite{
           'email': email,          
         },
         conflictAlgorithm: ConflictAlgorithm.replace);
+
   }
 
+  Future<void> deleteUser(int id) async {
+    
+    final db = await openMyDatabase();
+    
+    db.delete('usuario', where: 'id = ?', whereArgs: [id]);
+                
+  }
 
+  Future<void> updateUser(int id, String nome, String email) async {
+    
+    final db = await openMyDatabase();
+    
+    db.update(
+        'usuario',
+        {
+          'nome': nome,
+          'email': email,          
+        },
+        where: 'id = ?',
+        whereArgs: [id]);
+  }
 
-
+  Future<List<Map<String, dynamic>>> getUsers() async {
+    final db = await openMyDatabase();
+    return await db.query('ususario');
+  }
    
+
+
+
+
+
 } 
+
+
