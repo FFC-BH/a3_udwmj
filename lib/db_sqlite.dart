@@ -81,10 +81,16 @@ class db_sqlite{
 
   Future<List<Map<String, dynamic>>> getUsers() async {
     final db = await openMyDatabase();
-    return await db.query('ususario');
+    return await db.query('usuario');
   }
    
-
+  Future<List<Map<String, dynamic>>> getUserById(int id) async {
+    final db = await openMyDatabase();
+    return await db.query('usuario', 
+                      columns: ['nome', 'email'],
+                      where: 'id = ?',
+                      whereArgs: [id]); 
+  }
 
 
 

@@ -4,6 +4,42 @@ import 'package:a3_udwmj/db_sqlite.dart';
 import 'package:a3_udwmj/models.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart' show databaseFactory, databaseFactoryFfi, sqfliteFfiInit;
 
+class ListaDeClientesWidget extends StatelessWidget {
+  db_sqlite db_taskify = db_sqlite();
+
+ @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Lista de Clientes')),
+      body: FutureBuilder<List<Map<String, dynamic>>>(
+        future: db_taskify.getUsers(),  // Chama o método assíncrono
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());  // Loader enquanto os dados carregam
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Erro ao carregar dados'));  // Mostra mensagem de erro
+          } else if (snapshot.hasData) {
+            final clientes = snapshot.data!;
+
+            return ListView.builder(
+              itemCount: clientes.length,
+              itemBuilder: (context, index) {
+                final cliente = clientes[index];
+                return ListTile(
+                  title: Text(cliente['nome']),
+                  subtitle: Text(cliente['email']),
+                );
+              },
+            );
+          } else {
+            return Center(child: Text('Nenhum dado encontrado'));
+          }
+        },
+      ),
+    );
+  }
+}
+
 Future<void> main() async {
   
   sqfliteFfiInit();
@@ -21,10 +57,17 @@ Future<void> main() async {
   db_taskify.insertUser('Figueredo','Figueredo@gmail.com');
   db_taskify.insertUser('Chaves','Chaves@gmail.com');     
 
+  db_taskify.deleteUser(5);
+  db_taskify.updateUser(6, 'nome', 'email');
 
-
-///  runApp(MainApp()); 
-
+  
+ // Future<List<Map<String, dynamic>>> dadosCliente = db_taskify.getUsers();
+ // print(dadosCliente);
+   
+    
+  
+  runApp(MainApp(Home: ListaDeClientesWidget())); 
+  
 
 }
 
