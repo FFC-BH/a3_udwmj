@@ -6,6 +6,7 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart' show ConflictAlgorithm, Database, getDatabasesPath, openDatabase;
 
+
 // return await openDatabase('/home/fabiano/Documentos/Una/S2-2024/UDWMJ/Flutter/trabalho_a3/a3_udwmj/taskify.db', 
 
 // join(...) = .../a3_udwmj/.dart_tool/sqflite_common_ffi/databases/taskify.db
@@ -81,6 +82,9 @@ class db_sqlite{
 
   Future<List<Map<String, dynamic>>> getUsers() async {
     final db = await openMyDatabase();
+    
+    //print(db.query('usuario'));
+    
     return await db.query('usuario');
   }
    

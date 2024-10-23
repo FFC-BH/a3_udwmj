@@ -1,31 +1,100 @@
+import 'package:a3_udwmj/db_sqlite.dart';
 import 'package:flutter/material.dart';
 
 
-
 class Home extends StatelessWidget {
-  static String tag = 'home';
-
-  const Home({super.key});
   
-  @override
-  Widget build(BuildContext context) {
-    
-    const alucard = Hero(
-      tag: 'hero',
-      child: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: CircleAvatar(
-          radius: 72.0,
-          backgroundColor: Colors.transparent,
-          backgroundImage: AssetImage('assets/Estudante1.png'),
-        ),
-      ),
+  static String tag = 'home-page';
+
+ 
+
+  Home({super.key});
+  
+  //ListaUser createState() => ListaUser();
+
+db_sqlite db_taskify = db_sqlite();
+ 
+ Widget build(BuildContext context) {
+    var futureBuilder = FutureBuilder<List<Map<String, dynamic>>>(
+        future: db_taskify.getUsers(),  // Chama o método assíncrono
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());  // Loader enquanto os dados carregam
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Erro ao carregar dados'));  // Mostra mensagem de erro
+          } else if (snapshot.hasData) {
+            final clientes = snapshot.data!;
+
+            return ListView.builder(
+              itemCount: clientes.length,
+              itemBuilder: (context, index) {
+                final cliente = clientes[index];
+                return ListTile(
+                  title: Text(cliente['nome']),
+                  subtitle: Text(cliente['email']),
+                );
+              },
+            );
+          } else {
+            return Center(child: Text('Nenhum dado encontrado'));
+          }
+        },
+      );
+    return Scaffold(
+      appBar: AppBar(title: Text('Lista de Usuarios')),
+      body: futureBuilder,
     );
-
-
-
-    throw UnimplementedError();
   }
 
 
+/*
+  @override
+  Widget build(BuildContext context) {
+  //  return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(title: Text("Fabiano")),
+    );
+    
+   // throw UnimplementedError();
+  }
+*/
+
+
+}
+
+class ListaUser {
+ 
+  db_sqlite db_taskify = db_sqlite();
+ 
+ Widget build(BuildContext context) {
+    var futureBuilder = FutureBuilder<List<Map<String, dynamic>>>(
+        future: db_taskify.getUsers(),  // Chama o método assíncrono
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());  // Loader enquanto os dados carregam
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Erro ao carregar dados'));  // Mostra mensagem de erro
+          } else if (snapshot.hasData) {
+            final clientes = snapshot.data!;
+
+            return ListView.builder(
+              itemCount: clientes.length,
+              itemBuilder: (context, index) {
+                final cliente = clientes[index];
+                return ListTile(
+                  title: Text(cliente['nome']),
+                  subtitle: Text(cliente['email']),
+                );
+              },
+            );
+          } else {
+            return Center(child: Text('Nenhum dado encontrado'));
+          }
+        },
+      );
+    return Scaffold(
+      appBar: AppBar(title: Text('Lista de Usuarios')),
+      body: futureBuilder,
+    );
+  }
 }

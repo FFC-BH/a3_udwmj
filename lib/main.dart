@@ -1,51 +1,19 @@
+//import 'dart:developer';
+//import 'dart:io';
+//import 'dart:js_interop';
+
 import 'package:a3_udwmj/view/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:a3_udwmj/db_sqlite.dart';
-import 'package:a3_udwmj/models.dart';
+//import 'package:a3_udwmj/models.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart' show databaseFactory, databaseFactoryFfi, sqfliteFfiInit;
 
-class ListaDeClientesWidget extends StatelessWidget {
-  db_sqlite db_taskify = db_sqlite();
 
- @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Lista de Clientes')),
-      body: FutureBuilder<List<Map<String, dynamic>>>(
-        future: db_taskify.getUsers(),  // Chama o método assíncrono
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());  // Loader enquanto os dados carregam
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Erro ao carregar dados'));  // Mostra mensagem de erro
-          } else if (snapshot.hasData) {
-            final clientes = snapshot.data!;
-
-            return ListView.builder(
-              itemCount: clientes.length,
-              itemBuilder: (context, index) {
-                final cliente = clientes[index];
-                return ListTile(
-                  title: Text(cliente['nome']),
-                  subtitle: Text(cliente['email']),
-                );
-              },
-            );
-          } else {
-            return Center(child: Text('Nenhum dado encontrado'));
-          }
-        },
-      ),
-    );
-  }
-}
-
-Future<void> main() async {
+void main() async {
   
   sqfliteFfiInit();
   databaseFactory = databaseFactoryFfi;
-  db_sqlite db_taskify = db_sqlite();
-  db_taskify.openMyDatabase();
+  db_sqlite().openMyDatabase();
 
 
   // Usuario user = Usuario();
@@ -53,60 +21,63 @@ Future<void> main() async {
 
  // user.set();
   
-  db_taskify.insertUser('Fabiano ','Fabiano@gmail.com');
-  db_taskify.insertUser('Figueredo','Figueredo@gmail.com');
-  db_taskify.insertUser('Chaves','Chaves@gmail.com');     
+  db_sqlite().insertUser('Fabiano ','Fabiano@gmail.com');
+  db_sqlite().insertUser('Figueredo','Figueredo@gmail.com');
+  db_sqlite().insertUser('Chaves','Chaves@gmail.com');     
 
-  db_taskify.deleteUser(5);
-  db_taskify.updateUser(6, 'nome', 'email');
+ // db_taskify.deleteUser(5);
+ // db_taskify.updateUser(6, 'nome', 'email');
 
   
- // Future<List<Map<String, dynamic>>> dadosCliente = db_taskify.getUsers();
+  //Future<List<Map<String, dynamic>>> dadosCliente = db_taskify.getUsers();
  // print(dadosCliente);
-   
-    
+// print("db_sqlite().getUsers(): ");
+//  print(db_sqlite().getUsers().runtimeType);  
+//Future<List<Map<String, dynamic>>> ffc = db_sqlite().getUsers();
+
+//print(ffc);
+//print(ffc[1]);
+//print(ffc[2]);
+
+
+
+//print(Future<List<Map<String, dynamic>>>? db_sqlite().getUsers());
+
+   // print(db_sqlite().getUsers().catchError(onError));
+  // ignore: unnecessary_cast
+  //log(db_sqlite().getUsers()! as Future<List<Map<String, dynamic>>>); 
   
-  runApp(MainApp(Home: ListaDeClientesWidget())); 
+  runApp(MainApp()); 
   
 
 }
 
-class MainApp extends StatefulWidget {
+class MainApp extends StatelessWidget {
  
-  const MainApp({super.key});
+  MainApp({super.key});
  
-  get routes => <String, WidgetBuilder>{
+  final routes = <String, WidgetBuilder>{
    // LoginPage.tag: (context) => LoginPage(),
-    Home.tag: (context) => const Home(),
+    Home.tag: (context) => Home(),
   };
 
+  
   @override
   Widget build(BuildContext context) {
-    
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const Home(),
+      home: Home(),
     );  
   }
   
-  @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    throw UnimplementedError();
-  } 
-
-  /*
-  @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    throw UnimplementedError();
-  }  
-  */
-
+ // @override
+ // State<StatefulWidget> createState() {
+ //       throw UnimplementedError();
+ // }
 
 }
 
