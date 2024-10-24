@@ -18,6 +18,7 @@ class db_sqlite{
                               version: 1, 
                               onCreate: (db, version) async {
     return db.execute('''
+            PRAGMA foreign_keys = ON;
             CREATE TABLE IF NOT EXISTS usuario (
               id INTEGER PRIMARY KEY AUTOINCREMENT,
               nome TEXT NOT NULL,
@@ -30,13 +31,13 @@ class db_sqlite{
               descricao TEXT,
               data TEXT,
               concluido INTEGER NOT NULL,
-              FOREIGN KEY (usuarioId) REFERENCES usuario (id)
-            );
+              FOREIGN KEY (usuarioId) REFERENCES usuario (id) ON DELETE CASCADE
+           );
             CREATE TABLE IF NOT EXISTS lembrete (
               id INTEGER PRIMARY KEY AUTOINCREMENT,
               tarefaId INTEGER,
               data TEXT,
-              FOREIGN KEY (tarefaId) REFERENCES tarefa (id)
+              FOREIGN KEY (tarefaId) REFERENCES tarefa (id) ON DELETE CASCADE
            );
            ''');
       
@@ -81,10 +82,7 @@ class db_sqlite{
   }
 
   Future<List<Map<String, dynamic>>> getUsers() async {
-    final db = await openMyDatabase();
-    
-    //print(db.query('usuario'));
-    
+    final db = await openMyDatabase();    
     return await db.query('usuario');
   }
    
@@ -92,6 +90,65 @@ class db_sqlite{
     final db = await openMyDatabase();
     return await db.query('usuario', 
                       columns: ['nome', 'email'],
+                      where: 'id = ?',
+                      whereArgs: [id]); 
+  }
+
+ // CRUD para Tarefas
+
+  Future<void> insertTask(int usuarioId, String titulo, String descricao, String data, int concluido) async {
+    
+     final db = await openMyDatabase();
+    
+     int i = await db.insert(
+         'tarefa',
+        {
+          'usuarioId': usuarioId,
+          'titulo': titulo,
+          'descricao': descricao,
+          'data': data,
+          'concluido': concluido,
+        },
+        conflictAlgorithm: ConflictAlgorithm.replace);    
+  }
+
+  Future<void> deleteTask(int id) async {
+    
+    final db = await openMyDatabase();
+    
+    db.delete('tarefa', where: 'id = ?', whereArgs: [id]);
+                
+  }
+
+  Future<void> updateTask(int id, int usuarioId, String titulo, String descricao, String data, int concluido) async {
+    
+    final db = await openMyDatabase();
+    
+    db.update(
+        'tarefa',
+        {
+          'usuarioId': usuarioId,
+          'titulo': titulo,
+          'descricao': descricao,
+          'data': data,
+          'concluido': concluido,       
+        },
+        where: 'id = ?',
+        whereArgs: [id]);
+  }
+
+  Future<List<Map<String, dynamic>>> getTasksByIdUser(int usuarioId) async {
+    final db = await openMyDatabase();      
+    return await db.query('tarefa', 
+                      columns: ['id', 'titulo', 'descricao', 'data', 'concluido'],
+                      where: 'usuarioId = ?',
+                      whereArgs: [usuarioId]);
+  }
+   
+  Future<List<Map<String, dynamic>>> getTasksById(int id) async {
+    final db = await openMyDatabase();
+    return await db.query('tarefa', 
+                      columns: ['usuarioId', 'titulo', 'descricao', 'data', 'concluido'],
                       where: 'id = ?',
                       whereArgs: [id]); 
   }

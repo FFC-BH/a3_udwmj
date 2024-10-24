@@ -17,15 +17,21 @@ void main() async {
 
 
   // Usuario user = Usuario();
-
-
  // user.set();
-  
+
+ /*
   db_sqlite().insertUser('Fabiano ','Fabiano@gmail.com');
   db_sqlite().insertUser('Figueredo','Figueredo@gmail.com');
   db_sqlite().insertUser('Chaves','Chaves@gmail.com');     
 
- // db_taskify.deleteUser(5);
+  db_sqlite().insertTask(2, 'dormir','deitar 23:30', '23/10/2024', 0);
+  db_sqlite().insertTask(2, 'acordar','acordar 06:30', '24/10/2024', 0);
+
+  db_sqlite().insertTask(3, 'dormir','deitar 23:30', '23/10/2024', 0);
+  db_sqlite().insertTask(3, 'acordar','acordar 06:30', '24/10/2024', 0);
+*/
+  db_sqlite().deleteUser(2);
+
  // db_taskify.updateUser(6, 'nome', 'email');
 
   
