@@ -2,9 +2,14 @@
 //import 'dart:io';
 //import 'dart:js_interop';
 
-import 'package:a3_udwmj/view/home_view.dart';
+import 'package:a3_udwmj/view/testes.dart';
+import 'package:a3_udwmj/view/usuarios/cadastro.dart';
+//import 'package:a3_udwmj/view/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:a3_udwmj/db_sqlite.dart';
+//import 'package:a3_udwmj/lib/view/login_screen.dart';
+import 'package:a3_udwmj/view/usuarios/users.dart';
+
 //import 'package:a3_udwmj/models.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart' show databaseFactory, databaseFactoryFfi, sqfliteFfiInit;
 
@@ -30,7 +35,7 @@ void main() async {
   db_sqlite().insertTask(3, 'dormir','deitar 23:30', '23/10/2024', 0);
   db_sqlite().insertTask(3, 'acordar','acordar 06:30', '24/10/2024', 0);
 */
-  db_sqlite().deleteUser(2);
+ // db_sqlite().deleteUser(2);
 
  // db_taskify.updateUser(6, 'nome', 'email');
 
@@ -64,7 +69,7 @@ class MainApp extends StatelessWidget {
  
   final routes = <String, WidgetBuilder>{
    // LoginPage.tag: (context) => LoginPage(),
-    Home.tag: (context) => Home(),
+   // Home.tag: (context) => Home(),
   };
 
   
@@ -76,7 +81,7 @@ class MainApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Home(),
+      home: Testes(),
     );  
   }
   
