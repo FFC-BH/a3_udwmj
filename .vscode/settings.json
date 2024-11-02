@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "/home/fabiano/Documentos/Flutter/trabalho_a3/a3_udwmj/linux"
+  "cmake.sourceDirectory": "/home/fabiano/Documentos/Flutter/trabalho_a3/a3_udwmj/linux",
+  "cmake.ignoreCMakeListsMissing": true
 }
