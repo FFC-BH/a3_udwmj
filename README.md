@@ -9,6 +9,13 @@ Sites que podem ajudar:
 - [JSON to Dart Converter](https://javiercbk.github.io/json_to_dart/)
 - [XML to Dart Converter](https://jsonformatter.org/xml-to-dart)
 - [FlutterViz - Criador de Interfaces Flutter](https://app.flutterviz.com/)
+- [Live Preview de Widgets no Flutter: sem emulador, sem build!](https://www.youtube.com/watch?v=IjGrYy7HfFA)
+- [Dive into DevTools]
+https://www.youtube.com/watch?v=_EYk-E29edo&t=172s
+https://www.youtube.com/watch?v=Jakrc3Tn_y4
+https://medium.com/flutter/how-to-debug-layout-issues-with-the-flutter-inspector-87460a7b9db
+
+
 
 # Resumo do que temos até agora pelo GithubCopilot:
 

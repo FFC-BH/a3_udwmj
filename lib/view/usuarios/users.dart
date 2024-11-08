@@ -4,15 +4,18 @@ import 'package:a3_udwmj/db_sqlite.dart';
 class ListaUser extends StatelessWidget {
  
   db_sqlite db_taskify = db_sqlite();
+
+  ListaUser({super.key});
  
- Widget build(BuildContext context) {
+ @override
+  Widget build(BuildContext context) {
     var futureBuilder = FutureBuilder<List<Map<String, dynamic>>>(
         future: db_taskify.getUsers(),  // Chama o método assíncrono
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());  // Loader enquanto os dados carregam
+            return const Center(child: CircularProgressIndicator());  // Loader enquanto os dados carregam
           } else if (snapshot.hasError) {
-            return Center(child: Text('Erro ao carregar dados'));  // Mostra mensagem de erro
+            return const Center(child: Text('Erro ao carregar dados'));  // Mostra mensagem de erro
           } else if (snapshot.hasData) {
             final clientes = snapshot.data!;
 
@@ -27,12 +30,12 @@ class ListaUser extends StatelessWidget {
               },
             );
           } else {
-            return Center(child: Text('Nenhum dado encontrado'));
+            return const Center(child: Text('Nenhum dado encontrado'));
           }
         },
       );
     return Scaffold(
-      appBar: AppBar(title: Text('Lista de Usuarios')),
+      appBar: AppBar(title: const Text('Lista de Usuarios')),
       body: futureBuilder,
     );
   }

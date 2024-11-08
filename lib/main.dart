@@ -1,14 +1,13 @@
 //import 'dart:developer';
 //import 'dart:io';
 //import 'dart:js_interop';
-
+import 'package:device_preview/device_preview.dart';
 import 'package:a3_udwmj/view/testes.dart';
-import 'package:a3_udwmj/view/usuarios/cadastro-1.dart';
+import 'package:flutter/foundation.dart';
 //import 'package:a3_udwmj/view/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:a3_udwmj/db_sqlite.dart';
 //import 'package:a3_udwmj/lib/view/login_screen.dart';
-import 'package:a3_udwmj/view/usuarios/users.dart';
 
 //import 'package:a3_udwmj/models.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart' show databaseFactory, databaseFactoryFfi, sqfliteFfiInit;
@@ -58,8 +57,17 @@ void main() async {
   // ignore: unnecessary_cast
   //log(db_sqlite().getUsers()! as Future<List<Map<String, dynamic>>>); 
   
-  runApp(MainApp()); 
-  
+ // runApp(MainApp()); 
+  runApp(
+    DevicePreview(
+      enabled: !kReleaseMode,
+     // tools: const [
+     //   ...DevicePreview.defaultTools,
+     //   CustomPlugin(),
+    //  ],
+      builder: (context) => MainApp(),
+    ),
+  );
 
 }
 
@@ -72,25 +80,43 @@ class MainApp extends StatelessWidget {
    // Home.tag: (context) => Home(),
   };
 
-  
+  /*
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+      theme: buildTheme(),             
       home: Testes(),
     );  
   }
-  
+ */ 
+   @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      // ignore: deprecated_member_use
+      useInheritedMediaQuery: true,
+      locale: DevicePreview.locale(context),
+      builder: DevicePreview.appBuilder,
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      home: const Testes(),
+    );
+  }
+
+}
+/*
+ThemeData buildTheme(){
+   return ThemeData(
+         primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+*/
+//  );
  // @override
  // State<StatefulWidget> createState() {
  //       throw UnimplementedError();
  // }
 
-}
+//}
 
   
   

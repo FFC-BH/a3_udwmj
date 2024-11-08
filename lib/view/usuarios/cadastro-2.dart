@@ -1,10 +1,13 @@
 ///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
+//library;
 
 ///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
 
 import 'package:flutter/material.dart';
 
 class Cadastro_2 extends StatelessWidget {
+  const Cadastro_2({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,8 +24,9 @@ class Cadastro_2 extends StatelessWidget {
               children: [
                 ///***If you have exported images you must have to copy those images in assets/images directory.
                 const Image(
-                  image: AssetImage("assets/Taskify.png"),
+                  image: AssetImage("/assets/Taskify.png"),
                   //Image.asset('assets/Taskify.png')
+
                   height: 100,
                   width: 100,
                   fit: BoxFit.contain,
@@ -265,6 +269,9 @@ class Cadastro_2 extends StatelessWidget {
                               ),
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 16, vertical: 8),
+                              textColor: const Color(0xffffffff),
+                              height: 50,
+                              minWidth: 100,
                               child: const Text(
                                 "Cadastrar",
                                 style: TextStyle(
@@ -273,9 +280,6 @@ class Cadastro_2 extends StatelessWidget {
                                   fontStyle: FontStyle.normal,
                                 ),
                               ),
-                              textColor: const Color(0xffffffff),
-                              height: 50,
-                              minWidth: 100,
                             ),
                           ),
                         ),
@@ -294,6 +298,9 @@ class Cadastro_2 extends StatelessWidget {
                               ),
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 16, vertical: 8),
+                              textColor: const Color(0xffffffff),
+                              height: 50,
+                              minWidth: 100,
                               child: const Text(
                                 "Cancelar",
                                 style: TextStyle(
@@ -302,9 +309,6 @@ class Cadastro_2 extends StatelessWidget {
                                   fontStyle: FontStyle.normal,
                                 ),
                               ),
-                              textColor: const Color(0xffffffff),
-                              height: 50,
-                              minWidth: 100,
                             ),
                           ),
                         ),
@@ -312,24 +316,15 @@ class Cadastro_2 extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  margin: const EdgeInsets.fromLTRB(0, 30, 0, 0),
-                  padding: EdgeInsets.zero,
-                  width: 600,
-                  height: 80,
-                  decoration: BoxDecoration(
-                    color: const Color(0xff0e0e9b),
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.zero,
-                    border:
-                        Border.all(color: const Color(0x4d9e9e9e), width: 1),
-                  ),
-                ),
               ],
             ),
           ),
         ),
-      ),
-    );
+        
+        
+
+        ),
+      );
+    
   }
 }
