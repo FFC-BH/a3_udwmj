@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:a3_udwmj/db_sqlite.dart';
+import 'package:a3_udwmj/controller/db_sqlite.dart';
 
 class ListaUser extends StatelessWidget {
  

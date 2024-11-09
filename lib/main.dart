@@ -2,11 +2,14 @@
 //import 'dart:io';
 //import 'dart:js_interop';
 import 'package:device_preview/device_preview.dart';
-import 'package:a3_udwmj/view/testes.dart';
+//import 'package:a3_udwmj/view/.tmp/testes.dart';
+
+import 'package:a3_udwmj/view/home.dart';
+
 import 'package:flutter/foundation.dart';
 //import 'package:a3_udwmj/view/home_view.dart';
 import 'package:flutter/material.dart';
-import 'package:a3_udwmj/db_sqlite.dart';
+import 'package:a3_udwmj/controller/db_sqlite.dart';
 //import 'package:a3_udwmj/lib/view/login_screen.dart';
 
 //import 'package:a3_udwmj/models.dart';
@@ -99,7 +102,7 @@ class MainApp extends StatelessWidget {
       builder: DevicePreview.appBuilder,
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
-      home: const Testes(),
+      home: Home(),
     );
   }
 

@@ -21,7 +21,7 @@ class Tasks extends StatelessWidget {
               children: [
                 ///***If you have exported images you must have to copy those images in assets/images directory.
                 Image(
-                  image: AssetImage("assets/images/Taskify.png"),
+                  image: AssetImage('assets/Taskify.png'),
                   height: 100,
                   width: 100,
                   fit: BoxFit.contain,

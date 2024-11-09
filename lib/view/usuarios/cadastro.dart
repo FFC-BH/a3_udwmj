@@ -1,12 +1,8 @@
-///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
-//library;
-
-///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
 
 import 'package:flutter/material.dart';
 
-class Cadastro_2 extends StatelessWidget {
-  const Cadastro_2({super.key});
+class Cadastro extends StatelessWidget {
+  const Cadastro({super.key});
 
   @override
   Widget build(BuildContext context) {

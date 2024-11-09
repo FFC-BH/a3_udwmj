@@ -5,7 +5,7 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:a3_udwmj/view/usuarios/users.dart' show ListaUser;
-import 'package:a3_udwmj/view/usuarios/cadastro-2.dart';
+import 'package:a3_udwmj/view/usuarios/cadastro.dart';
 import 'package:a3_udwmj/view/tarefas/tasks.dart';
 
 /*
