@@ -1,12 +1,15 @@
 //import 'dart:developer';
 //import 'dart:io';
 //import 'dart:js_interop';
+
+import 'dart:ffi';
+
 import 'package:device_preview/device_preview.dart';
 //import 'package:a3_udwmj/view/.tmp/testes.dart';
 
-import 'package:a3_udwmj/view/home.dart';
+//import 'package:a3_udwmj/view/home.dart';
 
-import 'package:flutter/foundation.dart';
+//import 'package:flutter/foundation.dart';
 //import 'package:a3_udwmj/view/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:a3_udwmj/controller/db_sqlite.dart';
@@ -15,6 +18,9 @@ import 'package:a3_udwmj/controller/db_sqlite.dart';
 //import 'package:a3_udwmj/models.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart' show databaseFactory, databaseFactoryFfi, sqfliteFfiInit;
 
+import 'package:a3_udwmj/controller/node_js.dart';
+
+import 'package:a3_udwmj/view/testes.dart';
 
 void main() async {
   
@@ -22,7 +28,12 @@ void main() async {
   databaseFactory = databaseFactoryFfi;
   db_sqlite().openMyDatabase();
 
-
+   // conects();
+   print("main: response.statusCode: ");
+  Future<int> a; 
+  a = cadUser("pascal@ccharp.com","g4dy8x26","pascal.anguage");
+  print(a);
+  
   // Usuario user = Usuario();
  // user.set();
 
@@ -61,7 +72,7 @@ void main() async {
   //log(db_sqlite().getUsers()! as Future<List<Map<String, dynamic>>>); 
   
  // runApp(MainApp()); 
-  runApp(
+/*  runApp(
     DevicePreview(
       enabled: !kReleaseMode,
      // tools: const [
@@ -71,7 +82,7 @@ void main() async {
       builder: (context) => MainApp(),
     ),
   );
-
+*/
 }
 
 class MainApp extends StatelessWidget {
@@ -102,7 +113,7 @@ class MainApp extends StatelessWidget {
       builder: DevicePreview.appBuilder,
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
-      home: Home(),
+      home: Teste(),
     );
   }
 

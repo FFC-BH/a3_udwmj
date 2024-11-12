@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-class Home extends StatelessWidget { 
+class Home extends StatelessWidget {
   const Home({super.key});
 
   @override
@@ -21,7 +21,8 @@ class Home extends StatelessWidget {
                 ///***If you have exported images you must have to copy those images in assets/images directory.
                 const Image(
                   image: AssetImage("/assets/Taskify.png"),
-                 
+                  //Image.asset('assets/Taskify.png')
+
                   height: 100,
                   width: 100,
                   fit: BoxFit.contain,
@@ -29,7 +30,7 @@ class Home extends StatelessWidget {
                 const Padding(
                   padding: EdgeInsets.fromLTRB(0, 8, 0, 30),
                   child: Text(
-                    "Mude seu jeito de organizar suas tarefas!",
+                    "Faça seu cadastro",
                     textAlign: TextAlign.center,
                     overflow: TextOverflow.clip,
                     style: TextStyle(
@@ -40,17 +41,106 @@ class Home extends StatelessWidget {
                     ),
                   ),
                 ),
-              ],
-            ),
-          ),
-        ),
-      ),  
-    );
-  }          
-
-
-}
- /*               
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
+                  child: TextField(
+                    controller: TextEditingController(),
+                    obscureText: false,
+                    textAlign: TextAlign.start,
+                    maxLines: 1,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontStyle: FontStyle.normal,
+                      fontSize: 12,
+                      color: Color(0xff000000),
+                    ),
+                    decoration: InputDecoration(
+                      disabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(4.0),
+                        borderSide: const BorderSide(
+                            color: Color(0xff000000), width: 1),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(4.0),
+                        borderSide: const BorderSide(
+                            color: Color(0xff000000), width: 1),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(4.0),
+                        borderSide: const BorderSide(
+                            color: Color(0xff000000), width: 1),
+                      ),
+                      labelText: "Qual seu nome?",
+                      labelStyle: const TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontStyle: FontStyle.normal,
+                        fontSize: 14,
+                        color: Color(0xff000000),
+                      ),
+                      hintText: "Email",
+                      hintStyle: const TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontStyle: FontStyle.normal,
+                        fontSize: 12,
+                        color: Color(0xff000000),
+                      ),
+                      filled: true,
+                      fillColor: const Color(0xffffffff),
+                      isDense: false,
+                      contentPadding: const EdgeInsets.all(8),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
+                  child: TextField(
+                    controller: TextEditingController(),
+                    obscureText: true,
+                    textAlign: TextAlign.start,
+                    maxLines: 1,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontStyle: FontStyle.normal,
+                      fontSize: 12,
+                      color: Color(0xff000000),
+                    ),
+                    decoration: InputDecoration(
+                      disabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(4.0),
+                        borderSide: const BorderSide(
+                            color: Color(0xff000000), width: 1),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(4.0),
+                        borderSide: const BorderSide(
+                            color: Color(0xff000000), width: 1),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(4.0),
+                        borderSide: const BorderSide(
+                            color: Color(0xff000000), width: 1),
+                      ),
+                      labelText: "Digite seu melhor e-mail",
+                      labelStyle: const TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontStyle: FontStyle.normal,
+                        fontSize: 14,
+                        color: Color(0xff000000),
+                      ),
+                      hintText: "Password",
+                      hintStyle: const TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontStyle: FontStyle.normal,
+                        fontSize: 12,
+                        color: Color(0xff000000),
+                      ),
+                      filled: true,
+                      fillColor: const Color(0xffffffff),
+                      isDense: false,
+                      contentPadding: const EdgeInsets.all(8),
+                    ),
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
                   child: TextField(
@@ -235,4 +325,3 @@ class Home extends StatelessWidget {
   }
 }
 
-*/

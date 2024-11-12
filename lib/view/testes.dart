@@ -15,8 +15,8 @@ Widget preview(){
 }
 */
 
-class Testes extends StatelessWidget {
-  const Testes({super.key});
+class Teste extends StatelessWidget {
+  const Teste({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +69,7 @@ class Testes extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Cadastro_2()),
+                      MaterialPageRoute(builder: (context) => Cadastro()),
                     );
                   },
                   color: const Color(0xffffffff),
