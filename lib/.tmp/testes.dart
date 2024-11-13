@@ -4,8 +4,8 @@ library;
 ///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
 
 import 'package:flutter/material.dart';
-import 'package:a3_udwmj/view/usuarios/users.dart' show ListaUser;
-import 'package:a3_udwmj/view/usuarios/cadastro.dart';
+import 'package:a3_udwmj/.tmp/users.dart' show ListaUser;
+import 'package:a3_udwmj/.tmp/cadastro-2.dart';
 import 'package:a3_udwmj/view/tarefas/tasks.dart';
 
 /*
@@ -50,7 +50,7 @@ class Teste extends StatelessWidget {
                   textColor: const Color(0xff000000),
                   height: 40,
                   minWidth: 140,
-                  child: Text(
+                  child: const Text(
                     "user.cadastro",
                     style: TextStyle(
                       fontSize: 14,
@@ -69,7 +69,7 @@ class Teste extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Cadastro()),
+                      MaterialPageRoute(builder: (context) => const Cadastro()),
                     );
                   },
                   color: const Color(0xffffffff),
@@ -82,7 +82,7 @@ class Teste extends StatelessWidget {
                   textColor: const Color(0xff000000),
                   height: 40,
                   minWidth: 140,
-                  child: Text(
+                  child: const Text(
                     "user.login",
                     style: TextStyle(
                       fontSize: 14,
@@ -114,7 +114,7 @@ class Teste extends StatelessWidget {
                   textColor: const Color(0xff000000),
                   height: 40,
                   minWidth: 140,
-                  child: Text(
+                  child: const Text(
                     "tarefas",
                     style: TextStyle(
                       fontSize: 14,
@@ -141,7 +141,7 @@ class Teste extends StatelessWidget {
                   textColor: const Color(0xff000000),
                   height: 40,
                   minWidth: 140,
-                  child: Text(
+                  child: const Text(
                     "config",
                     style: TextStyle(
                       fontSize: 14,
@@ -168,7 +168,7 @@ class Teste extends StatelessWidget {
                   textColor: const Color(0xff000000),
                   height: 40,
                   minWidth: 140,
-                  child: Text(
+                  child: const Text(
                     "?",
                     style: TextStyle(
                       fontSize: 14,
@@ -195,7 +195,7 @@ class Teste extends StatelessWidget {
                   textColor: const Color(0xff000000),
                   height: 40,
                   minWidth: 140,
-                  child: Text(
+                  child: const Text(
                     "?",
                     style: TextStyle(
                       fontSize: 14,

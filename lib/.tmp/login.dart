@@ -155,7 +155,7 @@ class LoginScreen extends StatelessWidget {
                   textColor: const Color(0xff000000),
                   height: 45,
                   minWidth: MediaQuery.of(context).size.width,
-                  child: Text(
+                  child: const Text(
                     "Sign Up",
                     style: TextStyle(
                       fontSize: 14,
@@ -177,7 +177,7 @@ class LoginScreen extends StatelessWidget {
                     textColor: const Color(0xff000000),
                     height: 45,
                     minWidth: MediaQuery.of(context).size.width,
-                    child: Text(
+                    child: const Text(
                       "Sign In",
                       style: TextStyle(
                         fontSize: 14,

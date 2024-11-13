@@ -4,7 +4,10 @@
 
 import 'dart:ffi';
 
+
+import 'package:a3_udwmj/view/home.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 //import 'package:a3_udwmj/view/.tmp/testes.dart';
 
 //import 'package:a3_udwmj/view/home.dart';
@@ -20,7 +23,7 @@ import 'package:sqflite_common_ffi/sqflite_ffi.dart' show databaseFactory, datab
 
 import 'package:a3_udwmj/controller/node_js.dart';
 
-import 'package:a3_udwmj/view/testes.dart';
+import 'package:a3_udwmj/.tmp/testes.dart';
 
 void main() async {
   
@@ -28,11 +31,14 @@ void main() async {
   databaseFactory = databaseFactoryFfi;
   db_sqlite().openMyDatabase();
 
+ // int r = await cadUser("joao@maria.com","123456","joaomariajose");
    // conects();
-   print("main: response.statusCode: ");
-  Future<int> a; 
-  a = cadUser("pascal@ccharp.com","g4dy8x26","pascal.anguage");
-  print(a);
+//   print("main: response.statusCode: $r");
+ // node a = node as node; 
+ // print( cadUser("basic@basic.com","g4209826","basic.language").);
+  
+ 
+  
   
   // Usuario user = Usuario();
  // user.set();
@@ -71,14 +77,16 @@ void main() async {
   // ignore: unnecessary_cast
   //log(db_sqlite().getUsers()! as Future<List<Map<String, dynamic>>>); 
   
- // runApp(MainApp()); 
-/*  runApp(
+  runApp(MainApp()); 
+ 
+ /*
+  runApp(
     DevicePreview(
       enabled: !kReleaseMode,
-     // tools: const [
-     //   ...DevicePreview.defaultTools,
-     //   CustomPlugin(),
-    //  ],
+      tools: const [
+        ...DevicePreview.defaultTools,
+        CustomPlugin(),
+      ],
       builder: (context) => MainApp(),
     ),
   );
@@ -113,7 +121,7 @@ class MainApp extends StatelessWidget {
       builder: DevicePreview.appBuilder,
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
-      home: Teste(),
+      home: const Home(),
     );
   }
 
