@@ -24,6 +24,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/Taskify.png
+    - assets/Estudante1.png
     - assets/Calendario.png
     - assets/Dashboard.png
     - assets/Perfil.png

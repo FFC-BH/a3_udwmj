@@ -2,6 +2,8 @@
 
 Linux --> Ctrl + Shift + I
 
+Navigator.pop(context);
+
 Sites que podem ajudar:
 
 - [Medium - Integração de SQLite em Flutter (CRUD)](https://medium.com/@purvangsuvagiya/a-step-by-step-guide-to-integrate-sqlite-in-your-flutter-app-crud-696f50f4f481)
