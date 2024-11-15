@@ -1,6 +1,7 @@
 ///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
 library;
 
+import 'package:a3_udwmj/controller/node_js.dart';
 import 'package:a3_udwmj/view/home.dart';
 ///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
 
@@ -11,6 +12,9 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final email, senha;
+
     return Scaffold(
       backgroundColor: const Color(0xffffffff),
       body: Align(
@@ -34,8 +38,8 @@ class Login extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 8),
                   child: TextField(
-                    controller: TextEditingController(),
-                    obscureText: true,
+                    controller: email = TextEditingController(),
+                    obscureText: false,
                     textAlign: TextAlign.start,
                     maxLines: 1,
                     style: const TextStyle(
@@ -77,8 +81,8 @@ class Login extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 8),
                   child: TextField(
-                    controller: TextEditingController(),
-                    obscureText: false,
+                    controller: senha = TextEditingController(),
+                    obscureText: true,
                     textAlign: TextAlign.start,
                     maxLines: 1,
                     style: const TextStyle(
@@ -132,7 +136,18 @@ class Login extends StatelessWidget {
                           child: Align(
                             alignment: const Alignment(0.0, 0.0),
                             child: MaterialButton(
-                              onPressed: () {},
+                              onPressed: () async {
+
+                                if(await loginUser(email.text, senha.text) == 200){
+                               // Navigator.push(
+                               //   context,
+                               //   MaterialPageRoute(
+                               //       builder: (context) => const Login()),
+                              //  );
+                              print("Login: Tudo ok !");
+                              
+                                }
+                              },
                               color: const Color(0xff2f34c5),
                               elevation: 0,
                               shape: RoundedRectangleBorder(
@@ -144,7 +159,7 @@ class Login extends StatelessWidget {
                               textColor: const Color(0xffffffff),
                               height: 50,
                               minWidth: 100,
-                              child: Text(
+                              child: const Text(
                                 "Login",
                                 style: TextStyle(
                                   fontSize: 14,
@@ -178,7 +193,7 @@ class Login extends StatelessWidget {
                               textColor: const Color(0xffffffff),
                               height: 50,
                               minWidth: 100,
-                              child: Text(
+                              child: const Text(
                                 "Cancelar",
                                 style: TextStyle(
                                   fontSize: 14,
@@ -206,7 +221,7 @@ class Login extends StatelessWidget {
                                         builder: (context) => const PerdeuSenha()),
                                   );
                                 },
-                              child: Text(
+                              child: const Text(
                                 "Esqueci minha senha :(",
                                 style: TextStyle(
                                   fontSize: 14,
@@ -242,8 +257,13 @@ class Login extends StatelessWidget {
 class PerdeuSenha extends StatelessWidget {
   const PerdeuSenha({super.key});
 
+  
+
   @override
   Widget build(BuildContext context) {
+    
+    final email1, email2;
+
     return Scaffold(
       backgroundColor: const Color(0xffffffff),
       body: Align(
@@ -281,8 +301,8 @@ class PerdeuSenha extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 8),
                   child: TextField(
-                    controller: TextEditingController(),
-                    obscureText: true,
+                    controller: email1 = TextEditingController(),
+                    obscureText: false,
                     textAlign: TextAlign.start,
                     maxLines: 1,
                     style: const TextStyle(
@@ -324,7 +344,7 @@ class PerdeuSenha extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 8),
                   child: TextField(
-                    controller: TextEditingController(),
+                    controller: email2 = TextEditingController(),
                     obscureText: false,
                     textAlign: TextAlign.start,
                     maxLines: 1,
@@ -379,12 +399,17 @@ class PerdeuSenha extends StatelessWidget {
                           child: Align(
                             alignment: const Alignment(0.0, 0.0),
                             child: MaterialButton(
-                               onPressed: () {
+                               onPressed: () async {                                 
+                                 if (email1.text == email2.text) {
+
+                                  if(await forgotPswrd(email1.text) == 200){
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => const NovaSenha()),
                                   );
+                                  }
+                                 }
                                 },
                               color: const Color(0xff2f34c5),
                               elevation: 0,
@@ -397,7 +422,7 @@ class PerdeuSenha extends StatelessWidget {
                               textColor: const Color(0xffffffff),
                               height: 50,
                               minWidth: 100,
-                              child: Text(
+                              child: const Text(
                                 "Confirmar",
                                 style: TextStyle(
                                   fontSize: 14,
@@ -431,7 +456,7 @@ class PerdeuSenha extends StatelessWidget {
                               textColor: const Color(0xffffffff),
                               height: 50,
                               minWidth: 100,
-                              child: Text(
+                              child: const Text(
                                 "Cancelar",
                                 style: TextStyle(
                                   fontSize: 14,
@@ -539,7 +564,7 @@ class NovaSenha extends StatelessWidget {
                               textColor: const Color(0xffffffff),
                               height: 50,
                               minWidth: 100,
-                              child: Text(
+                              child: const Text(
                                 "Retornar",
                                 style: TextStyle(
                                   fontSize: 14,

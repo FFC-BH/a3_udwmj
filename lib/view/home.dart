@@ -59,6 +59,7 @@ class Home extends StatelessWidget {
                                     MaterialPageRoute(
                                         builder: (context) => const Descr()),
                                   );
+                                  
                                 },
                                 color: const Color(0xff2f34c5),
                                 elevation: 0,
@@ -71,7 +72,7 @@ class Home extends StatelessWidget {
                                 textColor: const Color(0xffffffff),
                                 height: 50,
                                 minWidth: 100,
-                                child: Text(
+                                child: const Text(
                                   "Teste já!",
                                   style: TextStyle(
                                     fontSize: 14,
@@ -105,7 +106,7 @@ class Home extends StatelessWidget {
                                 textColor: const Color(0xffffffff),
                                 height: 50,
                                 minWidth: 100,
-                                child: Text(
+                                child: const Text(
                                   "Login",
                                   style: TextStyle(
                                     fontSize: 14,
@@ -210,7 +211,7 @@ class Descr extends StatelessWidget {
                               textColor: const Color(0xffffffff),
                               height: 50,
                               minWidth: 100,
-                              child: Text(
+                              child: const Text(
                                 "Comece agora",
                                 style: TextStyle(
                                   fontSize: 14,

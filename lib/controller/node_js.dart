@@ -13,7 +13,7 @@ String url = 'https://api-sistemas-distribuidos-production-0667.up.railway.app';
     final response = await http.get(Uri.parse(url));
 
     //print("response.statusCode: ");
-    // print(response.statusCode);
+     print(response.statusCode);
   }
 
 //Future <Usuarioo>
@@ -40,4 +40,48 @@ String url = 'https://api-sistemas-distribuidos-production-0667.up.railway.app';
     return response.statusCode;
    // return "$response.statusCode";
   } // as String Function(String email, String senha, String nome);
+
+Future<int> loginUser(email, senha) async {
+    final response = await http.post(
+      Uri.parse('$url/api/users/login'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        "email": email,
+        "password": senha,        
+      }),
+    );
+
+    print("loginUser: response.body: ");
+    print(response.body);
+    print("loginUser: response.statusCode: ");
+    print(response.statusCode);
+
+   // return 200;
+    //return int.parse(response.statusCode);
+    return response.statusCode;
+  } //
+
+Future<int> forgotPswrd(email) async {
+    final response = await http.post(
+      Uri.parse('$url/api/users/forgot-password'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        "email": email,               
+      }),
+    );
+
+    print("loginUser: response.body: ");
+    print(response.body);
+    print("loginUser: response.statusCode: ");
+    print(response.statusCode);
+
+   // return 200;
+    //return int.parse(response.statusCode);
+    return response.statusCode;
+  } 
+
 //}

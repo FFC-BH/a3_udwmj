@@ -2,12 +2,10 @@
 //import 'dart:io';
 //import 'dart:js_interop';
 
-import 'dart:ffi';
 
 
 import 'package:a3_udwmj/view/home.dart';
 import 'package:device_preview/device_preview.dart';
-import 'package:flutter/foundation.dart';
 //import 'package:a3_udwmj/view/.tmp/testes.dart';
 
 //import 'package:a3_udwmj/view/home.dart';
@@ -21,9 +19,7 @@ import 'package:a3_udwmj/controller/db_sqlite.dart';
 //import 'package:a3_udwmj/models.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart' show databaseFactory, databaseFactoryFfi, sqfliteFfiInit;
 
-import 'package:a3_udwmj/controller/node_js.dart';
 
-import 'package:a3_udwmj/.tmp/testes.dart';
 
 void main() async {
   

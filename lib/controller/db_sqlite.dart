@@ -53,7 +53,7 @@ class db_sqlite{
         'usuario',
         {
           'nome': nome,
-          'email': email,          
+          'email': email,                    
         },
         conflictAlgorithm: ConflictAlgorithm.replace);
 

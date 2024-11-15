@@ -243,7 +243,7 @@ class Tasks extends StatelessWidget {
                               textColor: const Color(0xffffffff),
                               height: 50,
                               minWidth: 100,
-                              child: Text(
+                              child: const Text(
                                 "Cadastrar",
                                 style: TextStyle(
                                   fontSize: 14,
@@ -271,7 +271,7 @@ class Tasks extends StatelessWidget {
                               textColor: const Color(0xffffffff),
                               height: 50,
                               minWidth: 100,
-                              child: Text(
+                              child: const Text(
                                 "Cancelar",
                                 style: TextStyle(
                                   fontSize: 14,
