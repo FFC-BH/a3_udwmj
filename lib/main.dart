@@ -14,6 +14,7 @@ import 'package:device_preview/device_preview.dart';
 //import 'package:a3_udwmj/view/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:a3_udwmj/controller/db_sqlite.dart';
+import 'package:a3_udwmj/controller/node_js.dart';
 //import 'package:a3_udwmj/lib/view/login_screen.dart';
 
 //import 'package:a3_udwmj/models.dart';
@@ -33,7 +34,7 @@ void main() async {
  // node a = node as node; 
  // print( cadUser("basic@basic.com","g4209826","basic.language").);
   
- 
+  sincronize(30);
   
   
   // Usuario user = Usuario();

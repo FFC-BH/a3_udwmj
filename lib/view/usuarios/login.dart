@@ -3,6 +3,8 @@ library;
 
 import 'package:a3_udwmj/controller/node_js.dart';
 import 'package:a3_udwmj/view/home.dart';
+import 'package:a3_udwmj/view/tarefas/tasks.dart';
+
 ///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
 
 import 'package:flutter/material.dart';
@@ -12,7 +14,6 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final email, senha;
 
     return Scaffold(
@@ -34,7 +35,7 @@ class Login extends StatelessWidget {
                   width: 150,
                   fit: BoxFit.contain,
                 ),
-                
+
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 8),
                   child: TextField(
@@ -51,18 +52,18 @@ class Login extends StatelessWidget {
                     decoration: InputDecoration(
                       disabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            const BorderSide(color: Color(0xff000000), width: 1),
+                        borderSide: const BorderSide(
+                            color: Color(0xff000000), width: 1),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            const BorderSide(color: Color(0xff000000), width: 1),
+                        borderSide: const BorderSide(
+                            color: Color(0xff000000), width: 1),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            const BorderSide(color: Color(0xff000000), width: 1),
+                        borderSide: const BorderSide(
+                            color: Color(0xff000000), width: 1),
                       ),
                       labelText: "Digite seu e-mail",
                       labelStyle: const TextStyle(
@@ -94,18 +95,18 @@ class Login extends StatelessWidget {
                     decoration: InputDecoration(
                       disabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            const BorderSide(color: Color(0xff000000), width: 1),
+                        borderSide: const BorderSide(
+                            color: Color(0xff000000), width: 1),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            const BorderSide(color: Color(0xff000000), width: 1),
+                        borderSide: const BorderSide(
+                            color: Color(0xff000000), width: 1),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            const BorderSide(color: Color(0xff000000), width: 1),
+                        borderSide: const BorderSide(
+                            color: Color(0xff000000), width: 1),
                       ),
                       labelText: "Digite sua senha",
                       labelStyle: const TextStyle(
@@ -117,8 +118,8 @@ class Login extends StatelessWidget {
                       filled: true,
                       fillColor: const Color(0xfff2f2f3),
                       isDense: false,
-                      contentPadding:
-                          const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                      contentPadding: const EdgeInsets.symmetric(
+                          vertical: 8, horizontal: 12),
                     ),
                   ),
                 ),
@@ -137,15 +138,15 @@ class Login extends StatelessWidget {
                             alignment: const Alignment(0.0, 0.0),
                             child: MaterialButton(
                               onPressed: () async {
-
-                                if(await loginUser(email.text, senha.text) == 200){
-                               // Navigator.push(
-                               //   context,
-                               //   MaterialPageRoute(
-                               //       builder: (context) => const Login()),
-                              //  );
-                              print("Login: Tudo ok !");
-                              
+                                if (email.text != "" || senha.text != "") {
+                                  if (await loginUser(email.text, senha.text) ==
+                                      200) {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => const Tasks()),
+                                    );
+                                  }
                                 }
                               },
                               color: const Color(0xff2f34c5),
@@ -170,18 +171,18 @@ class Login extends StatelessWidget {
                             ),
                           ),
                         ),
-                          Padding(
+                        Padding(
                           padding: const EdgeInsets.all(10),
                           child: Align(
                             alignment: const Alignment(0.4, 0.0),
                             child: MaterialButton(
-                                      onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const Home()),
-                                  );
-                                },
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const Home()),
+                                );
+                              },
                               color: const Color(0xff100202),
                               elevation: 0,
                               shape: RoundedRectangleBorder(
@@ -204,35 +205,34 @@ class Login extends StatelessWidget {
                             ),
                           ),
                         ),
-                      
                       ],
                     ),
                   ),
                 ),
                 Padding(
-                          padding: const EdgeInsets.all(30),
-                          child: Align(
-                            alignment: const Alignment(0.0, 0.0),
-                            child: TextButton(
-                              onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const PerdeuSenha()),
-                                  );
-                                },
-                              child: const Text(
-                                "Esqueci minha senha :(",
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  fontStyle: FontStyle.normal,
-                                ),
-                              ),
-                            ),
-                          ),
+                  padding: const EdgeInsets.all(30),
+                  child: Align(
+                    alignment: const Alignment(0.0, 0.0),
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const PerdeuSenha()),
+                        );
+                      },
+                      child: const Text(
+                        "Esqueci minha senha :(",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          fontStyle: FontStyle.normal,
                         ),
-                      Container(                  
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
                   margin: const EdgeInsets.fromLTRB(0, 25, 0, 0),
                   padding: const EdgeInsets.all(0),
                   width: MediaQuery.of(context).size.width,
@@ -241,10 +241,10 @@ class Login extends StatelessWidget {
                     color: const Color(0xff0e0e9b),
                     shape: BoxShape.rectangle,
                     borderRadius: BorderRadius.zero,
-                    border: Border.all(color: const Color(0x4d9e9e9e), width: 1),
+                    border:
+                        Border.all(color: const Color(0x4d9e9e9e), width: 1),
                   ),
                 )
-   
               ],
             ),
           ),
@@ -257,11 +257,8 @@ class Login extends StatelessWidget {
 class PerdeuSenha extends StatelessWidget {
   const PerdeuSenha({super.key});
 
-  
-
   @override
   Widget build(BuildContext context) {
-    
     final email1, email2;
 
     return Scaffold(
@@ -297,7 +294,7 @@ class PerdeuSenha extends StatelessWidget {
                     ),
                   ),
                 ),
-                
+
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 8),
                   child: TextField(
@@ -314,18 +311,18 @@ class PerdeuSenha extends StatelessWidget {
                     decoration: InputDecoration(
                       disabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            const BorderSide(color: Color(0xff000000), width: 1),
+                        borderSide: const BorderSide(
+                            color: Color(0xff000000), width: 1),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            const BorderSide(color: Color(0xff000000), width: 1),
+                        borderSide: const BorderSide(
+                            color: Color(0xff000000), width: 1),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            const BorderSide(color: Color(0xff000000), width: 1),
+                        borderSide: const BorderSide(
+                            color: Color(0xff000000), width: 1),
                       ),
                       labelText: "Nos diga seu e-mail",
                       labelStyle: const TextStyle(
@@ -357,18 +354,18 @@ class PerdeuSenha extends StatelessWidget {
                     decoration: InputDecoration(
                       disabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            const BorderSide(color: Color(0xff000000), width: 1),
+                        borderSide: const BorderSide(
+                            color: Color(0xff000000), width: 1),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            const BorderSide(color: Color(0xff000000), width: 1),
+                        borderSide: const BorderSide(
+                            color: Color(0xff000000), width: 1),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            const BorderSide(color: Color(0xff000000), width: 1),
+                        borderSide: const BorderSide(
+                            color: Color(0xff000000), width: 1),
                       ),
                       labelText: "Diga seu emai novamente",
                       labelStyle: const TextStyle(
@@ -380,8 +377,8 @@ class PerdeuSenha extends StatelessWidget {
                       filled: true,
                       fillColor: const Color(0xfff2f2f3),
                       isDense: false,
-                      contentPadding:
-                          const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                      contentPadding: const EdgeInsets.symmetric(
+                          vertical: 8, horizontal: 12),
                     ),
                   ),
                 ),
@@ -399,18 +396,18 @@ class PerdeuSenha extends StatelessWidget {
                           child: Align(
                             alignment: const Alignment(0.0, 0.0),
                             child: MaterialButton(
-                               onPressed: () async {                                 
-                                 if (email1.text == email2.text) {
-
-                                  if(await forgotPswrd(email1.text) == 200){
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const NovaSenha()),
-                                  );
+                              onPressed: () async {
+                                if (email1.text == email2.text) {
+                                  if (await forgotPswrd(email1.text) == 200) {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const NovaSenha()),
+                                    );
                                   }
-                                 }
-                                },
+                                }
+                              },
                               color: const Color(0xff2f34c5),
                               elevation: 0,
                               shape: RoundedRectangleBorder(
@@ -438,13 +435,13 @@ class PerdeuSenha extends StatelessWidget {
                           child: Align(
                             alignment: const Alignment(0.4, 0.0),
                             child: MaterialButton(
-                                   onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const Login()),
-                                  );
-                                },
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const Login()),
+                                );
+                              },
                               color: const Color(0xff100202),
                               elevation: 0,
                               shape: RoundedRectangleBorder(
@@ -471,7 +468,7 @@ class PerdeuSenha extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(                  
+                Container(
                   margin: const EdgeInsets.fromLTRB(0, 25, 0, 0),
                   padding: const EdgeInsets.all(0),
                   width: MediaQuery.of(context).size.width,
@@ -480,10 +477,10 @@ class PerdeuSenha extends StatelessWidget {
                     color: const Color(0xff0e0e9b),
                     shape: BoxShape.rectangle,
                     borderRadius: BorderRadius.zero,
-                    border: Border.all(color: const Color(0x4d9e9e9e), width: 1),
+                    border:
+                        Border.all(color: const Color(0x4d9e9e9e), width: 1),
                   ),
                 )
-   
               ],
             ),
           ),
@@ -531,7 +528,7 @@ class NovaSenha extends StatelessWidget {
                     ),
                   ),
                 ),
-                
+
                 Align(
                   alignment: const Alignment(0.0, 0.0),
                   child: SingleChildScrollView(
@@ -547,12 +544,12 @@ class NovaSenha extends StatelessWidget {
                             alignment: const Alignment(0.0, 0.0),
                             child: MaterialButton(
                               onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const Login()),
-                                  );
-                                },
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const Login()),
+                                );
+                              },
                               color: const Color(0xff2f34c5),
                               elevation: 0,
                               shape: RoundedRectangleBorder(
@@ -579,7 +576,7 @@ class NovaSenha extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(                  
+                Container(
                   margin: const EdgeInsets.fromLTRB(0, 25, 0, 0),
                   padding: const EdgeInsets.all(0),
                   width: MediaQuery.of(context).size.width,
@@ -588,10 +585,10 @@ class NovaSenha extends StatelessWidget {
                     color: const Color(0xff0e0e9b),
                     shape: BoxShape.rectangle,
                     borderRadius: BorderRadius.zero,
-                    border: Border.all(color: const Color(0x4d9e9e9e), width: 1),
+                    border:
+                        Border.all(color: const Color(0x4d9e9e9e), width: 1),
                   ),
                 )
-   
               ],
             ),
           ),

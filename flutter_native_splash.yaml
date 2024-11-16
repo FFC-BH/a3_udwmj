@@ -1,0 +1,7 @@
+color: "#41558F" # Cor de fundo da splash screen
+image: assets/check-circle.png # Caminho para a imagem do splash
+android: true  # Habilita configuração para Android
+ios: true      # Habilita configuração para iOS
+web: false
+android_gravity: center # Centraliza o conteúdo no Android
+fullscreen: true

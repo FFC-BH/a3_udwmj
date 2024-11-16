@@ -28,8 +28,7 @@ class Cadastro extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
-              children: [
-                ///***If you have exported images you must have to copy those images in assets/images directory.
+              children: [                
                 const Image(
                   image: AssetImage('assets/Taskify.png'),
                   height: 150,

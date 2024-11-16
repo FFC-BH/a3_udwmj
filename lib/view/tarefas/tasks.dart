@@ -1,310 +1,198 @@
-///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
-library;
 
-///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
 
 import 'package:flutter/material.dart';
 
 class Tasks extends StatelessWidget {
   const Tasks({super.key});
 
+  /*
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _descriptionController.dispose();
+    super.dispose();
+  }
+*/
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xffffffff),
-      body: Align(
-        alignment: const Alignment(0.0, 0.2),
+   
+   final _titleController = TextEditingController();
+  final _descriptionController = TextEditingController();
+
+   
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        elevation: 4,
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(0, 35, 0, 0),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                ///***If you have exported images you must have to copy those images in assets/images directory.
-                const Image(
-                  image: AssetImage('assets/Taskify.png'),
-                  height: 150,
-                  width: 150,
-                  fit: BoxFit.contain,
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Adicionar Nova Tarefa',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
                 ),
-                const Padding(
-                  padding: EdgeInsets.fromLTRB(0, 8, 0, 30),
-                  child: Text(
-                    "Faça seu cadastro",
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.clip,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 16,
-                      color: Color(0xff000000),
+              ),
+              SizedBox(height: 16),
+              TextField(
+                controller: _titleController,
+                decoration: InputDecoration(
+                  labelText: 'Título',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              SizedBox(height: 16),
+              TextField(
+                controller: _descriptionController,
+                decoration: InputDecoration(
+                  labelText: 'Descrição',
+                  border: OutlineInputBorder(),
+                ),
+                maxLines: 3,
+              ),
+              SizedBox(height: 24),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context); // Fecha o modal sem salvar
+                    },
+                    child: Text('Cancelar'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.grey,
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 8),
-                  child: TextField(
-                    controller: TextEditingController(),
-                    obscureText: false,
-                    textAlign: TextAlign.start,
-                    maxLines: 1,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 12,
-                      color: Color(0xff000000),
-                    ),
-                    decoration: InputDecoration(
-                      disabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            const BorderSide(color: Color(0xff000000), width: 1),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            const BorderSide(color: Color(0xff000000), width: 1),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            const BorderSide(color: Color(0xff000000), width: 1),
-                      ),
-                      labelText: "Qual seu nome?",
-                      labelStyle: const TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontStyle: FontStyle.normal,
-                        fontSize: 14,
-                        color: Color(0xff000000),
-                      ),
-                      filled: true,
-                      fillColor: const Color(0xffffffff),
-                      isDense: false,
-                      contentPadding: const EdgeInsets.all(8),
-                    ),
+                  ElevatedButton(
+                    onPressed: () {
+                      String title = _titleController.text.trim();
+                      String description = _descriptionController.text.trim();
+                      if (title.isNotEmpty) {
+                        // Aqui você pode salvar a tarefa (ex.: enviar para o banco de dados ou uma lista)
+                        print('Tarefa salva: $title - $description');
+                        Navigator.pop(context);
+                      } else {
+                        // Mostra um alerta se o título estiver vazio
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('O título é obrigatório!')),
+                        );
+                      }
+                    },
+                    child: Text('Salvar'),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 8),
-                  child: TextField(
-                    controller: TextEditingController(),
-                    obscureText: true,
-                    textAlign: TextAlign.start,
-                    maxLines: 1,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 12,
-                      color: Color(0xff000000),
-                    ),
-                    decoration: InputDecoration(
-                      disabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            const BorderSide(color: Color(0xff000000), width: 1),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            const BorderSide(color: Color(0xff000000), width: 1),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            const BorderSide(color: Color(0xff000000), width: 1),
-                      ),
-                      labelText: "Digite seu melhor e-mail",
-                      labelStyle: const TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontStyle: FontStyle.normal,
-                        fontSize: 14,
-                        color: Color(0xff000000),
-                      ),
-                      filled: true,
-                      fillColor: const Color(0xffffffff),
-                      isDense: false,
-                      contentPadding: const EdgeInsets.all(8),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 8),
-                  child: TextField(
-                    controller: TextEditingController(),
-                    obscureText: false,
-                    textAlign: TextAlign.start,
-                    maxLines: 1,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 14,
-                      color: Color(0xff000000),
-                    ),
-                    decoration: InputDecoration(
-                      disabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            const BorderSide(color: Color(0xff000000), width: 1),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            const BorderSide(color: Color(0xff000000), width: 1),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            const BorderSide(color: Color(0xff000000), width: 1),
-                      ),
-                      labelText: "Repita seu e-mail",
-                      labelStyle: const TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontStyle: FontStyle.normal,
-                        fontSize: 14,
-                        color: Color(0xff000000),
-                      ),
-                      filled: true,
-                      fillColor: const Color(0xfff2f2f3),
-                      isDense: false,
-                      contentPadding:
-                          const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 8),
-                  child: TextField(
-                    controller: TextEditingController(),
-                    obscureText: false,
-                    textAlign: TextAlign.start,
-                    maxLines: 1,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 14,
-                      color: Color(0xff000000),
-                    ),
-                    decoration: InputDecoration(
-                      disabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            const BorderSide(color: Color(0xff000000), width: 1),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            const BorderSide(color: Color(0xff000000), width: 1),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            const BorderSide(color: Color(0xff000000), width: 1),
-                      ),
-                      labelText: "Escolha uma senha",
-                      labelStyle: const TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontStyle: FontStyle.normal,
-                        fontSize: 14,
-                        color: Color(0xff000000),
-                      ),
-                      filled: true,
-                      fillColor: const Color(0xfff2f2f3),
-                      isDense: false,
-                      contentPadding:
-                          const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: const Alignment(0.0, 0.0),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(30),
-                          child: Align(
-                            alignment: const Alignment(0.0, 0.0),
-                            child: MaterialButton(
-                              onPressed: () {},
-                              color: const Color(0xff2f34c5),
-                              elevation: 0,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                                side: const BorderSide(
-                                    color: Color(0xff808080), width: 1),
-                              ),
-                              padding: const EdgeInsets.all(16),
-                              textColor: const Color(0xffffffff),
-                              height: 50,
-                              minWidth: 100,
-                              child: const Text(
-                                "Cadastrar",
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  fontStyle: FontStyle.normal,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Align(
-                            alignment: const Alignment(0.4, 0.0),
-                            child: MaterialButton(
-                              onPressed: () {},
-                              color: const Color(0xff100202),
-                              elevation: 0,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                                side: const BorderSide(
-                                    color: Color(0xff808080), width: 1),
-                              ),
-                              padding: const EdgeInsets.all(16),
-                              textColor: const Color(0xffffffff),
-                              height: 50,
-                              minWidth: 100,
-                              child: const Text(
-                                "Cancelar",
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  fontStyle: FontStyle.normal,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+         /*
+                Container(                  
                   margin: const EdgeInsets.fromLTRB(0, 25, 0, 0),
                   padding: const EdgeInsets.all(0),
                   width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.width,
+                  height: 130,
                   decoration: BoxDecoration(
-                    color: const Color(0xff0e0e9b),
+                    color: const Color.fromARGB(211, 14, 44, 133),
                     shape: BoxShape.rectangle,
                     borderRadius: BorderRadius.zero,
                     border: Border.all(color: const Color(0x4d9e9e9e), width: 1),
                   ),
-                )
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [                      
+                      Expanded(
+                        flex: 1,
+                        child: IconButton( 
+
+                          icon: ClipRRect(
+                             borderRadius: BorderRadius.circular(8.0), // Ajusta os cantos se necessário
+                             child: Image.asset('assets/Dashboard.png', // Caminho para a imagem
+                             width: 200, // Ajusta o tamanho desejado
+                             height: 80,
+                             fit: BoxFit.cover, // Ajusta como a imagem se encaixa                            
+                              ),                             
+                          ),
+                             
+                          onPressed: () {},
+                          color: Color.fromARGB(255, 45, 57, 127),
+                          iconSize: 24,                          
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: IconButton(
+
+                          icon: ClipRRect(
+                             borderRadius: BorderRadius.circular(8.0), // Ajusta os cantos se necessário
+                             child: Image.asset('assets/Calendario.png', // Caminho para a imagem
+                             width: 200, // Ajusta o tamanho desejado
+                             height: 80,
+                             fit: BoxFit.cover, // Ajusta como a imagem se encaixa                            
+                              ),                             
+                          ),         
+
+                          onPressed: () {},
+                          color: Color.fromARGB(255, 101, 110, 163),
+                          iconSize: 24,
+                          
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: IconButton(
+
+                          icon: ClipRRect(
+                             borderRadius: BorderRadius.circular(8.0), // Ajusta os cantos se necessário
+                             child: Image.asset('assets/Settings.png', // Caminho para a imagem
+                             width: 200, // Ajusta o tamanho desejado
+                             height: 80,
+                             fit: BoxFit.cover, // Ajusta como a imagem se encaixa                            
+                              ),                             
+                          ),       
+
+                          onPressed: () {},
+                          color: Color(0xff212435),
+                          iconSize: 24,
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: IconButton(
+
+                          icon: ClipRRect(
+                             borderRadius: BorderRadius.circular(8.0), // Ajusta os cantos se necessário
+                             child: Image.asset('assets/Perfil.png', // Caminho para a imagem
+                             width: 200, // Ajusta o tamanho desejado
+                             height: 80,
+                             fit: BoxFit.cover, // Ajusta como a imagem se encaixa                            
+                              ),                             
+                          ),
+                          
+                          onPressed: () {},
+                          color: Color(0xff212435),
+                          iconSize: 24,
+                        ),
+                      ),
+                    ],
+                  ),
+                
+                ),
    
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+        */       
+                
+
+    );         
+           
+         
   }
 }
