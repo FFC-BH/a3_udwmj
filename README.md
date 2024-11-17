@@ -1,9 +1,19 @@
 # a3_udwmj
 
-Identação no Linux --> Ctrl + Shift + I
-Navigator.pop(context);
-modal_bottom_sheet (https://www.youtube.com/watch?v=Tqcxf5JV9Ak)
+## TODO ##
 
+- sincronizar sqflite e api;
+
+- popup de sucesso ou erro em campos(ausencia de dados) e ops;
+
+- setings:
+  > modo claro e escuro
+
+
+//////////////////////////////////////////////
+// Identação no Linux --> Ctrl + Shift + I  //
+// Navigator.pop(context);                  //
+//////////////////////////////////////////////
 
 
 Sites que podem ajudar:
@@ -19,7 +29,7 @@ Sites que podem ajudar:
   https://www.youtube.com/watch?v=Jakrc3Tn_y4
   https://medium.com/flutter/how-to-debug-layout-issues-with-the-flutter-inspector-87460a7b9db
 - [FlutterFlow] https://www.flutterflow.io/
-
+- [modal_bottom_sheet] (https://www.youtube.com/watch?v=Tqcxf5JV9Ak)
 
 # Resumo do que temos até agora pelo GithubCopilot:
 

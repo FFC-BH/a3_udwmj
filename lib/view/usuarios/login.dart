@@ -1,11 +1,7 @@
-///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
-library;
-
 import 'package:a3_udwmj/controller/node_js.dart';
 import 'package:a3_udwmj/view/home.dart';
 import 'package:a3_udwmj/view/tarefas/dashboard.dart';
 
-///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
 
 import 'package:flutter/material.dart';
 
@@ -14,7 +10,7 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final email, senha;
+    final TextEditingController email, senha;
 
     return Scaffold(
       backgroundColor: const Color(0xffffffff),
@@ -138,13 +134,13 @@ class Login extends StatelessWidget {
                             alignment: const Alignment(0.0, 0.0),
                             child: MaterialButton(
                               onPressed: () async {
-                                if (email.text != "" || senha.text != "") {
+                                if (email.text != "" && senha.text != "") {
                                   if (await loginUser(email.text, senha.text) ==
                                       200) {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => const Tasks()),
+                                          builder: (context) => const Dashboard()),
                                     );
                                   }
                                 }
@@ -259,7 +255,7 @@ class PerdeuSenha extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final email1, email2;
+    final TextEditingController email1, email2;
 
     return Scaffold(
       backgroundColor: const Color(0xffffffff),

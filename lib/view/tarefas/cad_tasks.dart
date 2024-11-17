@@ -1,11 +1,12 @@
 import 'package:a3_udwmj/controller/db_sqlite.dart';
 import 'package:a3_udwmj/controller/node_js.dart';
+import 'package:a3_udwmj/view/tarefas/dashboard.dart';
 import 'package:flutter/material.dart';
 
 late final categoria;
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class CadTask extends StatelessWidget {
+  const CadTask({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyForm extends StatefulWidget {
-  const MyForm({Key? key}) : super(key: key);
+  const MyForm({super.key});
 
   @override
   State<MyForm> createState() => _MyFormState();
@@ -54,7 +55,7 @@ class _MyFormState extends State<MyForm> {
   @override
   Widget build(BuildContext context) {
    
-    final titulo, descricao, dt_inicio, dt_fim;
+    final TextEditingController titulo, descricao, dtInicio, dtFim;
 
     db_sqlite sqfliteInst = db_sqlite();
    
@@ -85,7 +86,7 @@ class _MyFormState extends State<MyForm> {
           children: [
             Expanded(
               child: TextField(
-                controller: dt_inicio = dateController1,
+                controller: dtInicio = dateController1,
                 readOnly: true,
                 decoration: InputDecoration(
                   labelText: 'Data Início*',
@@ -100,7 +101,7 @@ class _MyFormState extends State<MyForm> {
             const SizedBox(width: 20),
             Expanded(
               child: TextField(
-                controller: dt_fim = dateController2,
+                controller: dtFim = dateController2,
                 readOnly: true,
                 decoration: InputDecoration(
                   labelText: 'Data Fim*',
@@ -116,7 +117,7 @@ class _MyFormState extends State<MyForm> {
         ),
         const SizedBox(height: 20),
         
-        Padding(
+        const Padding(
           padding: EdgeInsets.all(0.0),
           child: DropdownField(),
         ),
@@ -124,19 +125,22 @@ class _MyFormState extends State<MyForm> {
 
         const SizedBox(height: 20),
         Padding(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: Align(
-            alignment: Alignment(0.0, 0.0),
+            alignment: const Alignment(0.0, 0.0),
             child: MaterialButton(
-              onPressed: () {
-                  print("TESTE");
+              onPressed: () async {
+                  print("getTasks: ");
+                 print(await getTasks());
+                 
+                  
                   if (titulo.text != "") {
                                   
                                   print("Cadastro task: titulo: ");
                                   print(titulo.text);
                                  // sqfliteInst.insertUser(nome.text, email1.text);
                                 
-                                  cadTask(titulo.text, descricao.text, dt_inicio.text, dt_fim.text, "time", categoria);
+                                  cadTask(titulo.text, descricao.text, dtInicio.text, dtFim.text, "time", categoria);
                                 
                                 /*  Navigator.push(
                                     context,
@@ -147,13 +151,16 @@ class _MyFormState extends State<MyForm> {
                                 }
 
               },
-              color: Color(0xff2f34c5),
+              color: const Color(0xff2f34c5),
               elevation: 0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0),
-                side: BorderSide(color: Color(0xff808080), width: 1),
+                side: const BorderSide(color: Color(0xff808080), width: 1),
               ),
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
+              textColor: const Color(0xffffffff),
+              height: 50,
+              minWidth: 100,
               child: Text(
                 "Cadastrar",
                 style: TextStyle(
@@ -162,27 +169,35 @@ class _MyFormState extends State<MyForm> {
                   fontStyle: FontStyle.normal,
                 ),
               ),
-              textColor: Color(0xffffffff),
-              height: 50,
-              minWidth: 100,
             ),
           ),
         ),
         const SizedBox(height: 20),
         
         Padding(
-          padding: EdgeInsets.all(0),
+          padding: const EdgeInsets.all(0),
           child: Align(
-            alignment: Alignment(0, 0.0),
+            alignment: const Alignment(0, 0.0),
             child: MaterialButton(
-              onPressed: () {},
-              color: Color(0xff100202),
+              onPressed: () {
+
+                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => const Dashboard()),
+                                    );
+
+              },
+              color: const Color(0xff100202),
               elevation: 0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0),
-                side: BorderSide(color: Color(0xff808080), width: 1),
+                side: const BorderSide(color: Color(0xff808080), width: 1),
               ),
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
+              textColor: const Color(0xffffffff),
+              height: 50,
+              minWidth: 100,
               child: Text(
                 "Cancelar",
                 style: TextStyle(
@@ -191,9 +206,6 @@ class _MyFormState extends State<MyForm> {
                   fontStyle: FontStyle.normal,
                 ),
               ),
-              textColor: Color(0xffffffff),
-              height: 50,
-              minWidth: 100,
             ),
           ),
         ),
@@ -203,7 +215,7 @@ class _MyFormState extends State<MyForm> {
 }
 
 class DropdownField extends StatefulWidget {
-  const DropdownField({Key? key}) : super(key: key);
+  const DropdownField({super.key});
 
   @override
   State<DropdownField> createState() => _DropdownFieldState();

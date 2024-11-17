@@ -1,6 +1,8 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
+//import 'package:tuple/tuple.dart';
+
 //import 'dart:convert';
 
 //import 'package:a3_udwmj/models.dart';
@@ -25,17 +27,8 @@ void sincronize(int seconds) {
 
 Future<int> conect() async {
   final response = await http.get(Uri.parse(url));
-
-  //print("response.statusCode: ");
-  //print(response.statusCode)
-
   return response.statusCode;
 }
-
-//Future <Usuarioo>
-// Future <String>
-
-//int Function(String email, String senha, String nome) cadUser = (email, senha, nome) async {
 
 Future<int> cadUser(email, senha, nome) async {
   final response = await http.post(
@@ -49,13 +42,10 @@ Future<int> cadUser(email, senha, nome) async {
       "nome": nome,
     }),
   );
-
   print("cadUser: response.body: ");
   print(response.body);
-
-  return response.statusCode;
-  // return "$response.statusCode";
-} // as String Function(String email, String senha, String nome);
+  return response.statusCode;  
+}
 
 Future<int> loginUser(email, senha) async {
   final response = await http.post(
@@ -104,19 +94,18 @@ Future<int> forgotPswrd(email) async {
 
 // Criar (post)
 
-Future<int> cadTask(name, description, date_initial, date_finish, time, task_category ) async {
-  final response = await http.post(
-    Uri.parse('$url/api/tasks'),
+Future<int> cadTask(name, description, dateInitial, dateFinish, time, taskCategory ) async {
+    final response = await http.post(Uri.parse('$url/api/tasks'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
     body: jsonEncode(<String, String>{
       "name": name,
       "description": description,
-      "date_initial": date_initial,
-      "date_finish": date_finish,
+      "date_initial": dateInitial,
+      "date_finish": dateFinish,
       "time": time,
-      "task_category": task_category,
+      "task_category": taskCategory,
     }),
   );
 
@@ -138,7 +127,45 @@ Future<int> cadTask(name, description, date_initial, date_finish, time, task_cat
 
 // Obter todas (get) '/tasks'
 
+Future<int> getTasks() async {
+  final response = await http.get(Uri.parse('$url/api/tasks'));
+  print("getTasks: response.body: ");
+  print(response.body);
+print("getTasks: response.statusCode: ");
+  print(response.statusCode);
 
+  final String xmlString = response.body;
+
+                   print('XML bruto:');
+                  print(xmlString);
+
+  return response.statusCode;
+}
+
+class DatabaseResult {
+  final int sttsCd;
+  final List<String> fields;
+
+  DatabaseResult({required this.sttsCd, required this.fields});
+}
+
+
+DatabaseResult processJson(String jsonString) {
+  
+  final List<dynamic> jsonData = jsonDecode(jsonString);
+
+  if (jsonData.isEmpty) {
+    return DatabaseResult(sttsCd: 0, fields: []);
+  }
+
+  // Seleciona os quatro primeiros campos de cada objeto no JSON
+  final List<String> fields = jsonData.take(4).map((item) {
+    return item['campo'].toString();
+  }).toList();
+
+  // Retorna o resultado
+  return DatabaseResult(sttsCd: jsonData.length, fields: fields);
+}
 
 
 

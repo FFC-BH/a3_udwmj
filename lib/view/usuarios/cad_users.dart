@@ -13,7 +13,7 @@ class Cadastro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    final nome, email1, email2, senha;
+    final TextEditingController nome, email1, email2, senha;
 
     db_sqlite sqfliteInst = db_sqlite(); 
 
@@ -343,7 +343,7 @@ class CadCompleto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final credencial;
+    final TextEditingController credencial;
     String email;
    // int teste;
 

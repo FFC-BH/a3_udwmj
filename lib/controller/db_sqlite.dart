@@ -21,12 +21,14 @@ class db_sqlite{
             PRAGMA foreign_keys = ON;
             CREATE TABLE IF NOT EXISTS usuario (
               id INTEGER PRIMARY KEY AUTOINCREMENT,
+              apiId TEXT,
               nome TEXT NOT NULL,
               email TEXT NOT NULL
             );
             CREATE TABLE IF NOT EXISTS tarefa (
               id INTEGER PRIMARY KEY AUTOINCREMENT,
               usuarioId INTEGER,
+              apiId TEXT,
               name TEXT NOT NULL,
               description TEXT,
               date_initial TEXT,

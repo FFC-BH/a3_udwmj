@@ -15,9 +15,9 @@ class Home extends StatelessWidget {
         height: double.infinity,
         padding: const EdgeInsets.only(right: 1, bottom: 20),
         decoration: ShapeDecoration(
-          color: Color(0xFF41558F),
+          color: const Color(0xFF41558F),
           shape: RoundedRectangleBorder(
-            side: BorderSide(
+            side: const BorderSide(
               width: 2,
               strokeAlign: BorderSide.strokeAlignOutside,
             ),
@@ -47,9 +47,9 @@ class Home extends StatelessWidget {
                     width: 220,
                     fit: BoxFit.contain,
                   ),
-                  SizedBox(height: 8),
-                  Padding(
-                    padding: const EdgeInsets.only(
+                  const SizedBox(height: 8),
+                  const Padding(
+                    padding: EdgeInsets.only(
                         bottom: 20), // Espaço abaixo do texto
                     child: Align(
                       alignment: Alignment.centerLeft,
@@ -154,7 +154,7 @@ class Home extends StatelessWidget {
                     child: Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        image: DecorationImage(
+                        image: const DecorationImage(
                           image: AssetImage('assets/Estudante1.png'),
                           fit: BoxFit.cover,
                         ),
