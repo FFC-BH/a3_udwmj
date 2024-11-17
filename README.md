@@ -1,8 +1,10 @@
 # a3_udwmj
 
-Linux --> Ctrl + Shift + I
-
+Identação no Linux --> Ctrl + Shift + I
 Navigator.pop(context);
+modal_bottom_sheet (https://www.youtube.com/watch?v=Tqcxf5JV9Ak)
+
+
 
 Sites que podem ajudar:
 
@@ -13,10 +15,10 @@ Sites que podem ajudar:
 - [FlutterViz - Criador de Interfaces Flutter](https://app.flutterviz.com/)
 - [Live Preview de Widgets no Flutter: sem emulador, sem build!](https://www.youtube.com/watch?v=IjGrYy7HfFA)
 - [Dive into DevTools]
-https://www.youtube.com/watch?v=_EYk-E29edo&t=172s
-https://www.youtube.com/watch?v=Jakrc3Tn_y4
-https://medium.com/flutter/how-to-debug-layout-issues-with-the-flutter-inspector-87460a7b9db
-
+  https://www.youtube.com/watch?v=_EYk-E29edo&t=172s
+  https://www.youtube.com/watch?v=Jakrc3Tn_y4
+  https://medium.com/flutter/how-to-debug-layout-issues-with-the-flutter-inspector-87460a7b9db
+- [FlutterFlow] https://www.flutterflow.io/
 
 
 # Resumo do que temos até agora pelo GithubCopilot:

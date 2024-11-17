@@ -3,7 +3,7 @@ library;
 
 import 'package:a3_udwmj/controller/node_js.dart';
 import 'package:a3_udwmj/view/home.dart';
-import 'package:a3_udwmj/view/tarefas/tasks.dart';
+import 'package:a3_udwmj/view/tarefas/dashboard.dart';
 
 ///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
 

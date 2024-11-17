@@ -27,10 +27,12 @@ class db_sqlite{
             CREATE TABLE IF NOT EXISTS tarefa (
               id INTEGER PRIMARY KEY AUTOINCREMENT,
               usuarioId INTEGER,
-              titulo TEXT NOT NULL,
-              descricao TEXT,
-              data TEXT,
-              concluido INTEGER NOT NULL,
+              name TEXT NOT NULL,
+              description TEXT,
+              date_initial TEXT,
+              date_finish TEXT,
+              time TEXT,
+              task_category TEXT,
               FOREIGN KEY (usuarioId) REFERENCES usuario (id) ON DELETE CASCADE
            );
             CREATE TABLE IF NOT EXISTS lembrete (

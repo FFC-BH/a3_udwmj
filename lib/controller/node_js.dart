@@ -10,13 +10,13 @@ String url = 'https://api-sistemas-distribuidos-production-0667.up.railway.app';
 void sincronize(int seconds) {
   Timer.periodic(Duration(seconds: seconds), (timer) async {
 
+    if(await conect() == 200)
+    {
 
 
-    print(await conect());
-    print(timer.tick);
-
-
-
+      print(timer.tick);
+    }
+    
 
   });
 }
@@ -99,6 +99,48 @@ Future<int> forgotPswrd(email) async {
   //return int.parse(response.statusCode);
   return response.statusCode;
 } 
+
+// Tarefas
+
+// Criar (post)
+
+Future<int> cadTask(name, description, date_initial, date_finish, time, task_category ) async {
+  final response = await http.post(
+    Uri.parse('$url/api/tasks'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      "name": name,
+      "description": description,
+      "date_initial": date_initial,
+      "date_finish": date_finish,
+      "time": time,
+      "task_category": task_category,
+    }),
+  );
+
+  print("cadTask: response.body: ");
+  print(response.body);
+
+  return response.statusCode;
+  // return "$response.statusCode";
+}
+
+// Atualizar (put) /tasks/:id
+
+
+// Deletar (delete) '/tasks/:id'
+
+
+// Obter pelo ID (get) '/tasks/:id'
+
+
+// Obter todas (get) '/tasks'
+
+
+
+
 
 /*
 import 'dart:isolate';

@@ -3,7 +3,7 @@
 //import 'dart:js_interop';
 
 
-
+import 'package:a3_udwmj/view/tarefas/cad_tasks.dart';
 import 'package:a3_udwmj/view/home.dart';
 import 'package:device_preview/device_preview.dart';
 //import 'package:a3_udwmj/view/.tmp/testes.dart';
@@ -91,7 +91,8 @@ void main() async {
 }
 
 class MainApp extends StatelessWidget {
- 
+//class MainApp extends StatefulWidget {
+
   MainApp({super.key});
  
   final routes = <String, WidgetBuilder>{
@@ -118,7 +119,10 @@ class MainApp extends StatelessWidget {
       builder: DevicePreview.appBuilder,
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
-      home: const Home(),
+    //  home: const Home(),
+  //     home: MyCustomWidget(),
+          home: MyApp(),
+         //           home: MyForm(),
     );
   }
 

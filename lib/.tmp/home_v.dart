@@ -1,4 +1,4 @@
-import 'package:a3_udwmj/view/usuarios/cadastro.dart';
+//import 'package:a3_udwmj/view/usuarios/cadastro.dart';
 import 'package:a3_udwmj/view/usuarios/login.dart';
 import 'package:flutter/material.dart';
 

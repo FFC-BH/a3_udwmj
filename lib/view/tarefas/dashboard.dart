@@ -1,6 +1,7 @@
 
-
 import 'package:flutter/material.dart';
+
+
 
 class Tasks extends StatelessWidget {
   const Tasks({super.key});
@@ -14,13 +15,32 @@ class Tasks extends StatelessWidget {
   }
 */
 
+
+  
+
+  Future<void> _selectDate(BuildContext context) async {
+    DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+
+   // if (picked != null) {
+  //    setState(() {
+   //     _dateController.text = "${picked.day}/${picked.month}/${picked.year}";
+   //   });
+  //  }
+  }
+
   @override
   Widget build(BuildContext context) {
    
    final _titleController = TextEditingController();
   final _descriptionController = TextEditingController();
 
-   
+   TextEditingController _dateController = TextEditingController();
+
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Card(
@@ -34,7 +54,7 @@ class Tasks extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'Adicionar Nova Tarefa',
+                'Criar Nova Tarefa',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -57,6 +77,72 @@ class Tasks extends StatelessWidget {
                 ),
                 maxLines: 3,
               ),
+             
+             
+             
+              SizedBox(height: 24),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                'Data início*',
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+                 Text(
+                'Data fim*',
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+                ],
+              ),
+            
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  
+                  Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: TextField(
+          controller: _dateController,
+          readOnly: true, // Evita que o teclado seja exibido
+          decoration: InputDecoration(
+            labelText: "Selecione uma data",
+            suffixIcon: Icon(Icons.calendar_today),
+          ),
+          onTap: () => _selectDate(context),
+        ),
+      ),
+
+
+
+                 Text(
+                'Data fim*',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+                ],
+              ),
+            
+
+
+               SizedBox(height: 16),
+              TextField(
+                controller: _descriptionController,
+                decoration: InputDecoration(
+                  labelText: 'Descrição',
+                  border: OutlineInputBorder(),
+                ),
+                maxLines: 3,
+              ),
+             
+            
               SizedBox(height: 24),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -85,7 +171,7 @@ class Tasks extends StatelessWidget {
                         );
                       }
                     },
-                    child: Text('Salvar'),
+                    child: Text('Criar'),
                   ),
                 ],
               ),
