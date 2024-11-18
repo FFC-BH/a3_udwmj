@@ -1,4 +1,11 @@
 {
   "cmake.sourceDirectory": "/home/fabiano/Documentos/Flutter/trabalho_a3/a3_udwmj/linux",
-  "cmake.ignoreCMakeListsMissing": true
+  "cmake.ignoreCMakeListsMissing": true,
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-11",
+      "path": "/usr/lib/jvm/java-11-openjdk-amd64",
+      "default": true
+    }
+  ]
 }
