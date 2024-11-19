@@ -143,27 +143,40 @@ Future<int> getTasks() async {
 }
 
 
-Future<List<Map<String, dynamic>>> fetchDataFromDatabase() async {
+Future<Map<String, dynamic>> fetchDataFromDatabase() async {
   try {
     // Realiza a requisição HTTP GET
     final response = await http.get(Uri.parse('$url/api/tasks'));
 
-    // Verifica se a resposta foi bem-sucedida
+    // Verifica o status da resposta
     if (response.statusCode == 200) {
-      // Decodifica o JSON
-      final data = json.decode(response.body);
+      // Decodifica o corpo da resposta como JSON
+      final List<dynamic> jsonData = jsonDecode(response.body);
 
-      // Verifica se os dados são uma lista de objetos
-      if (data is List) {
-        return List<Map<String, dynamic>>.from(data);
-      } else {
-        throw Exception('O formato dos dados não é uma lista.');
-      }
+      // Transforma em uma lista de strings (com 4 campos por item)
+      final List<String> stringList = jsonData.map((item) {
+        return '${item['id']} | ${item['name']} | ${item['description']} | ${item['date_finish']}';
+      }).toList();
+
+      // Retorna o statusCode e o body como um mapa
+      return {
+        'statusCode': response.statusCode,
+       // 'body': stringList,
+          'body': jsonData,
+      };
     } else {
-      throw Exception('Erro ao buscar dados: ${response.statusCode}');
+      // Caso o status não seja 200, retorna o status e uma mensagem vazia
+      return {
+        'statusCode': response.statusCode,
+        'body': [],
+      };
     }
   } catch (e) {
-    throw Exception('Erro: $e');
+    // Em caso de erro, retorna status 500 e mensagem de erro
+    return {
+      'statusCode': 500,
+      'body': ['Erro: $e'],
+    };
   }
 }
 

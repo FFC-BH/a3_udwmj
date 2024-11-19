@@ -241,17 +241,17 @@ class Cadastro extends StatelessWidget {
                                 if (email1.text == email2.text) {
                                   email_pub = email1.text;
                                  // senha_pub = senha.text;
-                                  print("Cadastro: email_pub: ");
-                                  print(email_pub);
-                                  sqfliteInst.insertUser(nome.text, email1.text);
+                                 // print("Cadastro: email_pub: ");
+                                 // print(email_pub);
+                                  sqfliteInst.insertUser(nome.text, email1.text, senha.text);
                                 
-                                  cadUser(email1.text, senha.text, nome.text);
+                                 // cadUser(email1.text, senha.text, nome.text);
                                 
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const CadCompleto()),
+                                            const Login()),
                                   );
                                 }
                               },
@@ -454,19 +454,19 @@ class CadCompleto extends StatelessWidget {
                             child: MaterialButton(
                               onPressed: () async {
                                 email = email_pub;
-                                print("CadCompleto: email: ");
-                                print(email);
+                               // print("CadCompleto: email: ");
+                               // print(email);
                                // teste = int.parse(loginUser(email, credencial.text));
                                // teste = await loginUser(email, credencial.text);
                                //  print("CadCompleto: teste: ");
                                // print(teste);
-                                if(await loginUser(email, credencial.text) == 200){
+                               // if(await loginUser(email, credencial.text) == 200){
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => const Login()),
                                 );
-                                }
+                               // }
                               },
                               color: const Color(0xff2f34c5),
                               elevation: 0,

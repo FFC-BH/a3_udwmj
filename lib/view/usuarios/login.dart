@@ -1,7 +1,7 @@
 import 'package:a3_udwmj/controller/node_js.dart';
 import 'package:a3_udwmj/view/home.dart';
-import 'package:a3_udwmj/view/tarefas/dashboard.dart';
-
+import 'package:a3_udwmj/view/tarefas/dashbord.dart';
+import 'package:a3_udwmj/controller/db_sqlite.dart';
 
 import 'package:flutter/material.dart';
 
@@ -11,6 +11,8 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextEditingController email, senha;
+
+    db_sqlite sqfliteInst = db_sqlite();
 
     return Scaffold(
       backgroundColor: const Color(0xffffffff),
@@ -135,13 +137,23 @@ class Login extends StatelessWidget {
                             child: MaterialButton(
                               onPressed: () async {
                                 if (email.text != "" && senha.text != "") {
-                                  if (await loginUser(email.text, senha.text) ==
-                                      200) {
+                                 
+                                 print("email.text:");
+                                 print(email.text);
+                                 print("senha.text:");
+                                 print(senha.text);
+                                 print("searchUserByEmail: ");
+                                 //print(sqfliteInst.searchUserByEmail(email.text).toString());
+                                 sqfliteInst.rec();
+                                  if (await sqfliteInst.searchUserByEmail(email.text) == (senha.text))
+                                       {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => const Dashboard()),
+                                          builder: (context) => Dashboard()),
                                     );
+                                    //getTasks();
+
                                   }
                                 }
                               },

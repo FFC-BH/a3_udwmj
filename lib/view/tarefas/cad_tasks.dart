@@ -1,6 +1,6 @@
 import 'package:a3_udwmj/controller/db_sqlite.dart';
 import 'package:a3_udwmj/controller/node_js.dart';
-import 'package:a3_udwmj/view/tarefas/dashboard.dart';
+import 'package:a3_udwmj/view/tarefas/dashbord.dart';
 import 'package:flutter/material.dart';
 
 late final categoria;
@@ -142,12 +142,11 @@ class _MyFormState extends State<MyForm> {
                                 
                                   cadTask(titulo.text, descricao.text, dtInicio.text, dtFim.text, "time", categoria);
                                 
-                                /*  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                    //        const ()),
-                                  ); */
+                                 Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Dashboard()),
+                                    );
                                 }
 
               },
@@ -184,7 +183,7 @@ class _MyFormState extends State<MyForm> {
                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => const Dashboard()),
+                                          builder: (context) => Dashboard()),
                                     );
 
               },

@@ -4,8 +4,8 @@ import 'package:a3_udwmj/view/tarefas/cad_tasks.dart';
 import 'package:flutter/material.dart';
 
 
-class Dashboard extends StatelessWidget {
-  const Dashboard({super.key});
+class Dashboarddd extends StatelessWidget {
+  const Dashboarddd({super.key});
 
   @override
   Widget build(BuildContext context) {

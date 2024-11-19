@@ -5,12 +5,12 @@
 
 import 'package:a3_udwmj/view/tarefas/cad_tasks.dart';
 import 'package:a3_udwmj/view/home.dart';
-import 'package:a3_udwmj/view/tarefas/dashbord2.dart';
-import 'package:a3_udwmj/view/tarefas/dashbord3.dart';
-import 'package:a3_udwmj/view/tarefas/mb.dart';
-import 'package:a3_udwmj/view/tarefas/mb2.dart';
+
+import 'package:a3_udwmj/view/tarefas/dashbord.dart';
+
+
 import 'package:device_preview/device_preview.dart';
-//import 'package:a3_udwmj/view/.tmp/testes.dart';
+
 
 //import 'package:a3_udwmj/view/home.dart';
 
@@ -127,7 +127,7 @@ class MainApp extends StatelessWidget {
   //     home: MyCustomWidget(),
         // home: CustomAppBarScreen(),
         // home: CustomAppBarScreennn(),
-   //////////       home: CardListScreenn(),
+ //////////        home: CardListScreenn(),
          //           home: MyForm(),
     );
   }

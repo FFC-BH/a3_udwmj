@@ -23,7 +23,8 @@ class db_sqlite{
               id INTEGER PRIMARY KEY AUTOINCREMENT,
               apiId TEXT,
               nome TEXT NOT NULL,
-              email TEXT NOT NULL
+              email TEXT NOT NULL,
+              senha TEXT NOT NULL
             );
             CREATE TABLE IF NOT EXISTS tarefa (
               id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -49,7 +50,7 @@ class db_sqlite{
 
   }
   
-  Future<void> insertUser(String nome, String email) async {
+  Future<void> insertUser(String nome, String email, String senha) async {
     
     final db = await openMyDatabase();
     
@@ -57,7 +58,8 @@ class db_sqlite{
         'usuario',
         {
           'nome': nome,
-          'email': email,                    
+          'email': email,
+          'senha': senha,                    
         },
         conflictAlgorithm: ConflictAlgorithm.replace);
 
@@ -97,6 +99,42 @@ class db_sqlite{
                       where: 'id = ?',
                       whereArgs: [id]); 
   }
+//Future<List<Map<String, dynamic>>>
+  Future<List<Map<String, Object?>>> searchUserByEmail(String email) async {
+    final db = await openMyDatabase();
+   // String senhaRet;
+   // print("db.query");
+   //Future<List<Map<String, Object?>>> senhaRet =
+   return await db.query('usuario', 
+                      columns: ['id', 'senha'],
+                      where: 'email = ?',
+                      whereArgs: [email]); 
+
+  // Map<String, Object?> firstItem = senhaRet.first; // Recupera o primeiro item
+  //  print('Primeiro item: $firstItem');                   
+  }
+Future <void> rec() async {
+  // Recuperando o primeiro item
+  try {
+    List<Map<String, Object?>> data = await searchUserByEmail("fabianofigueredochaves@gmail.com");
+    Map<String, Object?> firstItem = data.first; // Recupera o primeiro item
+    print('Primeiro item: $firstItem');
+  } catch (e) {
+    print('Erro ao buscar dados: $e');
+  }
+
+
+}
+
+ //  Future<List<Map<String, Object?>>> firstItem = senhaRet[1];
+//print(firstItem);
+   
+  ///  String name = senhaRet['senha']["senha"];
+//print(name); // Saída: João                  
+   // Map<String, dynamic> firstItem = data[0];
+   // return senhaRet;
+ //  return "";
+ // }
 
  // CRUD para Tarefas
 

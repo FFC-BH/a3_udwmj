@@ -1,7 +1,9 @@
+import 'package:a3_udwmj/controller/node_js.dart';
+import 'package:a3_udwmj/view/tarefas/cad_tasks.dart';
 import 'package:flutter/material.dart';
 
-
-class MyAppp extends StatelessWidget {
+/*
+class Dashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -9,40 +11,39 @@ class MyAppp extends StatelessWidget {
     );
   }
 }
-
-class CardListScreenn extends StatefulWidget {
+*/
+class Dashboard extends StatefulWidget {
   @override
   _CardListScreenState createState() => _CardListScreenState();
 }
 
-class _CardListScreenState extends State<CardListScreenn> {
-  // JSON simulado
-  final List<Map<String, String>> jsonData = [
-    {
-      "campo1": "Valor 1",
-      "campo2": "Valor 2",
-      "campo3": "Valor 3",
-      "campo4": "Valor 4",
-    },
-    {
-      "campo1": "Outro 1",
-      "campo2": "Outro 2",
-      "campo3": "Outro 3",
-      "campo4": "Outro 4",
-    },
-    {
-      "campo1": "Dado 1",
-      "campo2": "Dado 2",
-      "campo3": "Dado 3",
-      "campo4": "Dado 4",
-    },
-  ];
+class _CardListScreenState extends State<Dashboard> {
+   
+  List<Map<String, dynamic>>? jsonData;
+ 
+  @override
+    void initState() {
+      super.initState();
+      buscaTarefas();
+  }
 
-  // Variável para controlar a seleção do RadioButton
+  Future<void> buscaTarefas() async {
+    
+    try {
+      final data = await fetchDataFromDatabase();
+      setState(() {
+        jsonData = data; // Armazena o JSON retornado na variável
+      });
+    } catch (e) {
+      print('Erro ao carregar os dados: $e');
+    }
+  }
+  
   int? selectedIndex;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {     
+    
     return Scaffold(
       appBar: AppBar(
         title: Text('Dashboard'),
@@ -60,9 +61,9 @@ class _CardListScreenState extends State<CardListScreenn> {
         children: [
           Expanded(
             child: ListView.builder(
-              itemCount: jsonData.length,
+              itemCount: jsonData!.length,
               itemBuilder: (context, index) {
-                final item = jsonData[index];
+                final item = jsonData!.elementAt(index);
                 return Card(
                   color: Colors.primaries[index % Colors.primaries.length],
                   child: Padding(
@@ -89,17 +90,17 @@ class _CardListScreenState extends State<CardListScreenn> {
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          'Campo 1: ${item["campo1"]}',
+                                          'Campo 1: ${item["id"]}',
                                           style: TextStyle(fontSize: 16),
                                         ),
                                         SizedBox(height: 8),
                                         Text(
-                                          'Campo 2: ${item["campo2"]}',
+                                          'Campo 2: ${item["name"]}',
                                           style: TextStyle(fontSize: 16),
                                         ),
                                         SizedBox(height: 8),
                                         Text(
-                                          'Campo 3: ${item["campo3"]}',
+                                          'Campo 3: ${item["description"]}',
                                           style: TextStyle(fontSize: 16),
                                         ),
                                       ],
@@ -107,7 +108,7 @@ class _CardListScreenState extends State<CardListScreenn> {
                                   ),
                                   Expanded(
                                     child: Text(
-                                      'Campo 4: ${item["campo4"]}',
+                                      'Campo 4: ${item["date_finish"]}',
                                       style: TextStyle(fontSize: 16),
                                       textAlign: TextAlign.right,
                                     ),
@@ -123,7 +124,26 @@ class _CardListScreenState extends State<CardListScreenn> {
                 );
               },
             ),
+
+            
+
           ),
+                           
+           Positioned(
+            bottom: 0, // Distância da parte inferior
+            right: 0, // Distância da parte direita
+            child: FloatingActionButton(
+              onPressed: () {
+                Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => const CadTask()),
+                                    );
+              },
+              child: Icon(Icons.add),
+            ),
+          ),
+
           Container(                  
                   margin: const EdgeInsets.fromLTRB(0, 25, 0, 0),
                   padding: const EdgeInsets.all(0),
@@ -208,7 +228,21 @@ class _CardListScreenState extends State<CardListScreenn> {
                               ),                             
                           ),
                           
-                          onPressed: () {},
+                          onPressed: () {}, //async {
+
+                             // final result = await fetchDataFromDatabase();
+
+                             //  print('Status Code: ${result['statusCode']}');
+                            //   print('Body:');
+                            //     for (var item in result['body']) {
+                            //   print(item);
+
+
+
+                                 
+
+
+                         // },
                           color: Color(0xff212435),
                           iconSize: 24,
                         ),
@@ -219,6 +253,7 @@ class _CardListScreenState extends State<CardListScreenn> {
                 ),
         ],
       ),
+     
     );
   }
 }
