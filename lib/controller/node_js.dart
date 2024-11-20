@@ -12,7 +12,7 @@ String url = 'https://api-sistemas-distribuidos-production-0667.up.railway.app';
 void sincronize(int seconds) {
   Timer.periodic(Duration(seconds: seconds), (timer) async {
 
-    if(await conect() == 200)
+   // if(await conect() == 200)
     {
 
 

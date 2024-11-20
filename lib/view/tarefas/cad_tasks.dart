@@ -1,6 +1,7 @@
 import 'package:a3_udwmj/controller/db_sqlite.dart';
 import 'package:a3_udwmj/controller/node_js.dart';
 import 'package:a3_udwmj/view/tarefas/dashbord.dart';
+import 'package:a3_udwmj/view/usuarios/login.dart';
 import 'package:flutter/material.dart';
 
 late final categoria;
@@ -138,9 +139,9 @@ class _MyFormState extends State<MyForm> {
                                   
                                   print("Cadastro task: titulo: ");
                                   print(titulo.text);
-                                 // sqfliteInst.insertUser(nome.text, email1.text);
+                                  sqfliteInst.insertTask(user_Pub.userOn, titulo.text, descricao.text, dtInicio.text, dtFim.text, categoria, "status");
                                 
-                                  cadTask(titulo.text, descricao.text, dtInicio.text, dtFim.text, "time", categoria);
+                                 // cadTask(titulo.text, descricao.text, dtInicio.text, dtFim.text, "time", categoria);
                                 
                                  Navigator.push(
                                       context,
@@ -236,7 +237,7 @@ class _DropdownFieldState extends State<DropdownField> {
         labelText: 'Categoria',
         border: OutlineInputBorder(),
       ),
-      value: selectedOption,
+      value: categoria = selectedOption,
       isExpanded: true,
       items: options.map((String option) {
         return DropdownMenuItem<String>(

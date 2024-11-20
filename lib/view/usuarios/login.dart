@@ -5,6 +5,10 @@ import 'package:a3_udwmj/controller/db_sqlite.dart';
 
 import 'package:flutter/material.dart';
 
+class user_Pub {
+  static int userOn = 1;
+}
+
 class Login extends StatelessWidget {
   const Login({super.key});
 
@@ -137,24 +141,16 @@ class Login extends StatelessWidget {
                             child: MaterialButton(
                               onPressed: () async {
                                 if (email.text != "" && senha.text != "") {
-                                 
-                                 print("email.text:");
-                                 print(email.text);
-                                 print("senha.text:");
-                                 print(senha.text);
-                                 print("searchUserByEmail: ");
-                                 //print(sqfliteInst.searchUserByEmail(email.text).toString());
-                                 sqfliteInst.rec();
-                                  if (await sqfliteInst.searchUserByEmail(email.text) == (senha.text))
-                                       {
+                                  if (await sqfliteInst.searchUserByEmail(email.text) == (senha.text)){
+                                      
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) => Dashboard()),
                                     );
-                                    //getTasks();
-
+                                    
                                   }
+
                                 }
                               },
                               color: const Color(0xff2f34c5),
