@@ -31,11 +31,11 @@ class MyForm extends StatefulWidget {
 }
 
 class _MyFormState extends State<MyForm> {
+
   final TextEditingController dtInicio = TextEditingController();
   final TextEditingController dtFim = TextEditingController();
   final TextEditingController titulo = TextEditingController();
-  final TextEditingController descricao =
-      TextEditingController(); //, dtInicio, dtFim;
+  final TextEditingController descricao  = TextEditingController();//, dtInicio, dtFim;
 /*
   @override
   void dispose() {
@@ -63,8 +63,9 @@ class _MyFormState extends State<MyForm> {
 
   @override
   Widget build(BuildContext context) {
-    db_sqlite sqfliteInst = db_sqlite();
-
+   
+    db_sqlite sqfliteInst = db_sqlite();   
+   
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -121,10 +122,13 @@ class _MyFormState extends State<MyForm> {
           ],
         ),
         const SizedBox(height: 20),
+        
         const Padding(
           padding: EdgeInsets.all(0.0),
           child: DropdownField(),
         ),
+
+
         const SizedBox(height: 20),
         Padding(
           padding: const EdgeInsets.all(10),
@@ -132,20 +136,46 @@ class _MyFormState extends State<MyForm> {
             alignment: const Alignment(0.0, 0.0),
             child: MaterialButton(
               onPressed: () async {
-                if (titulo.text != "" && (_DropdownFieldState.categoria != null)) {
-                  sqfliteInst.insertTask(
-                      user_Pub.userOn,
-                      titulo.text,
-                      descricao.text,
-                      dtInicio.text,
-                      dtFim.text,
-                      _DropdownFieldState.categoria.toString(),
-                      "status");
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Dashboard()),
-                  );                  
-                }
+                //  print("getTasks: ");
+                // print(await getTasks());
+                 
+                  
+                 // if (titulo.text != "") {
+                                  
+                                  print("Cadastro task:  ");
+                                  print('user_Pub.userOn: ');
+                                  print(user_Pub.userOn);
+
+                                  print('titulo.text: ');
+                                  print(titulo.text);
+
+                                  print('descricao.text');                                  
+                                  print(descricao.text);
+
+                                  print('dts: dtInicio.text');                                  
+                                  print(dtInicio.text);
+
+                                  print('dts: dtInicio.hashCode');                                  
+                                  print(dtInicio.hashCode);
+
+                                  print('dts: dtFim.text');
+                                  print(dtFim.text);
+
+                                  print('dts: dtFim.hashCode');
+                                  print(dtFim.hashCode);                                  
+                                 
+                                  print(_DropdownFieldState.categoria.toString());
+                                  sqfliteInst.insertTask(user_Pub.userOn, titulo.text, descricao.text, dtInicio.text, dtFim.text, _DropdownFieldState.categoria.toString(), "status");
+                                //, dtFim.text: $dtFim.text, categoria: $categoria ");
+                                 // cadTask(titulo.text, descricao.text, dtInicio.text, dtFim.text, "time", categoria);
+                                
+                                 Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Dashboard()),
+                                    );
+                        //        }
+
               },
               color: const Color(0xff2f34c5),
               elevation: 0,
@@ -169,16 +199,20 @@ class _MyFormState extends State<MyForm> {
           ),
         ),
         const SizedBox(height: 20),
+        
         Padding(
           padding: const EdgeInsets.all(0),
           child: Align(
             alignment: const Alignment(0, 0.0),
             child: MaterialButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Dashboard()),
-                );
+
+                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Dashboard()),
+                                    );
+
               },
               color: const Color(0xff100202),
               elevation: 0,
@@ -219,11 +253,17 @@ class _DropdownFieldState extends State<DropdownField> {
   // Lista de opções
   final List<String> options = [
     'Tarefa',
-    'Evento',
+    'Evento',    
   ];
+
+  
 
   @override
   Widget build(BuildContext context) {
+   
+    print('_DropdownFieldState.categoria');
+  print(categoria);
+
     return DropdownButtonFormField<String>(
       decoration: const InputDecoration(
         labelText: 'Categoria',
@@ -239,7 +279,7 @@ class _DropdownFieldState extends State<DropdownField> {
       }).toList(),
       onChanged: (String? newValue) {
         setState(() {
-          categoria = newValue;
+          categoria = newValue;         
         });
       },
     );

@@ -1,7 +1,6 @@
 import 'package:a3_udwmj/controller/db_sqlite.dart';
-import 'package:a3_udwmj/controller/api_sdm.dart';
+import 'package:a3_udwmj/controller/node_js.dart';
 import 'package:a3_udwmj/view/tarefas/cad_tasks.dart';
-import 'package:a3_udwmj/view/tarefas/edit_task.dart';
 import 'package:a3_udwmj/view/usuarios/login.dart';
 import 'package:flutter/material.dart';
 
@@ -72,22 +71,19 @@ class _CardListScreenState extends State<Dashboard> {
                 final item = jsonData!.elementAt(index);
                 return Card(
                   color: Colors.primaries[index % Colors.primaries.length],
-                  child: InkWell(
-                    onTap: () {
-                      print("TESTE");
-                
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(        
-                     builder: (context) => Task(itemm: item["titulo"], idTask: item["id"]),
-                  ),
-                );
-
-                  },                                   
-                  child:Padding(
+                  child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Row(
-                      children: [                     
+                      children: [
+                        Radio<int>(
+                          value: index,
+                          groupValue: selectedIndex,
+                          onChanged: (value) {
+                            setState(() {
+                              selectedIndex = value;
+                            });
+                          },
+                        ),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -130,10 +126,7 @@ class _CardListScreenState extends State<Dashboard> {
                       ],
                     ),
                   ),
-                ),
-              
                 );
-              
               },
             ),
 
@@ -240,10 +233,21 @@ class _CardListScreenState extends State<Dashboard> {
                               ),                             
                           ),
                           
-                          onPressed: () {},                                  
+                          onPressed: () {}, //async {
+
+                             // final result = await fetchDataFromDatabase();
+
+                             //  print('Status Code: ${result['statusCode']}');
+                            //   print('Body:');
+                            //     for (var item in result['body']) {
+                            //   print(item);
 
 
-                         
+
+                                 
+
+
+                         // },
                           color: Color(0xff212435),
                           iconSize: 24,
                         ),

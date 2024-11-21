@@ -1,27 +1,63 @@
+import 'package:a3_udwmj/view/usuarios/login.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
-//import 'package:tuple/tuple.dart';
-
-//import 'dart:convert';
-
-//import 'package:a3_udwmj/models.dart';
+import 'package:a3_udwmj/controller/db_sqlite.dart';
 
 String url = 'https://api-sistemas-distribuidos-production-0667.up.railway.app';
 
-void sincronize(int seconds) {
+void sincronize(int seconds) {  
+  
   Timer.periodic(Duration(seconds: seconds), (timer) async {
 
-   // if(await conect() == 200)
+    if(await conect() == 200)
     {
-
-
       print(timer.tick);
+
+      
+      // Usuários : Sqlite --> Api
+
+      
+
+      // Usuários : Api --> Sqlite
+
+
+      // Tarefas:
+
+      final List<Map<String, dynamic>> tsksSqlite = await db_sqlite().getTasksByIdUser(user_Pub.userOn);
+      final List<Map<String, dynamic>> tsksApi = await getTasks();
+
+      // Tarefas : Sqlite --> Api
+
+      print('tsksSqlite');
+      print(tsksSqlite!.length); 
+
+      // Tarefas : Api --> Sqlite
+
+      print('tsksApi');
+      print(tsksApi!.length); 
+     
+
     }
     
 
   });
 }
+
+
+/* 
+    try {
+      //final data = await fetchDataFromDatabase();
+      
+      setState(() {
+        jsonData = data; // Armazena o JSON retornado na variável
+      });
+    } catch (e) {
+      print('Erro ao carregar os dados: $e');
+    }
+      */
+
+
 
 
 
@@ -126,8 +162,8 @@ Future<int> cadTask(name, description, dateInitial, dateFinish, time, taskCatego
 
 
 // Obter todas (get) '/tasks'
-
-Future<int> getTasks() async {
+/*
+Future<String> getTasks() async {
   final response = await http.get(Uri.parse('$url/api/tasks'));
   print("getTasks: response.body: ");
   print(response.body);
@@ -138,12 +174,12 @@ Future<int> getTasks() async {
 
  //                  print('XML bruto:');
  //                 print(xmlString);
-
-  return response.statusCode;
+  return response.body;
+  //return response.statusCode;
 }
+*/
 
-
-Future<List<Map<String, dynamic>>> fetchDataFromDatabase() async {
+Future<List<Map<String, dynamic>>> getTasks() async {
   try {
     // Realiza a requisição HTTP GET
     final response = await http.get(Uri.parse('$url/api/tasks'));

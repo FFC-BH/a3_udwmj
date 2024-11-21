@@ -2,18 +2,27 @@
 
 ## TODO ##
 
-- sincronizar sqflite e api;
+> Controller:
+  - Sincronizar sqflite e api;
 
-- popup de sucesso ou erro em campos(ausencia de dados) e ops;
+> View:
+   
+  - Popup de sucesso ou erro em campos(ausencia de dados) e ops;
 
-- setings:
-  > modo claro e escuro
+  - Melhorar validação e mostrar os erros;
 
 
-//////////////////////////////////////////////
-// Identação no Linux --> Ctrl + Shift + I  //
-// Navigator.pop(context);                  //
-//////////////////////////////////////////////
+  >> Setings:
+    
+    - Modo claro e escuro;
+
+  >> Perfil:
+
+
+////////////////////////////////////////////////
+// Identação no Linux --> Ctrl + Shift + I    //
+// Identação no Windos -->                    //
+////////////////////////////////////////////////
 
 
 Sites que podem ajudar:

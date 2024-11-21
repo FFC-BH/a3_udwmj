@@ -78,7 +78,7 @@ class db_sqlite {
         where: 'id = ?',
         whereArgs: [id]);
   }
-
+/*
   Future<List<Map<String, dynamic>>> getUsers() async {
     final db = await openMyDatabase();
     return await db.query('usuario');
@@ -89,7 +89,7 @@ class db_sqlite {
     return await db.query('usuario',
         columns: ['nome', 'email'], where: 'id = ?', whereArgs: [id]);
   }
-
+*/
   Future<String> searchUserByEmail(String email) async {
     final db = await openMyDatabase();
 
@@ -135,22 +135,27 @@ class db_sqlite {
   }
 
   Future<void> updateTask(int id, int usuarioId, String titulo, String descricao,
-      String data_inicial, String data_final, String categoria, String status) async {
+      String dataInicial, String dataFinal, String categoria, String status) async {
     final db = await openMyDatabase();
-
+    print("sqlite update:");
+    print(
     db.update(
         'tarefa',
         {
           'usuarioId': usuarioId,
           'titulo': titulo,
           'descricao': descricao,
-          'data_inicial': data_inicial,
-          'data_final': data_final,
-          'concluido': categoria,
+          'data_inicial': dataInicial,
+          'data_final': dataFinal,
+          'categoria': categoria,
           'status': status,
         },
         where: 'id = ?',
-        whereArgs: [id]);
+        whereArgs: [id]
+    )//;
+    );
+
+
   }
 
   Future<List<Map<String, dynamic>>> getTasksByIdUser(int usuarioId) async {
@@ -161,11 +166,19 @@ class db_sqlite {
         whereArgs: [usuarioId]);
   }
 
-  Future<List<Map<String, dynamic>>> getTasksById(int id) async {
+  Future<Map<String, Object?>> getTaskByIdTask(int id) async {
     final db = await openMyDatabase();
-    return await db.query('tarefa',
-        columns: ['usuarioId', 'titulo', 'descricao', 'data_inicial', 'data_final', 'categoria', 'status'],
+
+    List<Map<String, Object?>> tsk = await db.query('tarefa',
+        columns: ['id', 'usuarioId', 'titulo', 'descricao', 'data_inicial', 'data_final', 'categoria', 'status'],
         where: 'id = ?',
         whereArgs: [id]);
+ 
+    return tsk.firstWhere(
+      (mapa) => mapa.containsKey('id'),
+      orElse: () => {},
+    );
+ 
   }
+
 }

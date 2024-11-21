@@ -1,49 +1,76 @@
 import 'package:a3_udwmj/controller/db_sqlite.dart';
-//import 'package:a3_udwmj/controller/node_js.dart';
 import 'package:a3_udwmj/view/tarefas/dashbord.dart';
 import 'package:a3_udwmj/view/usuarios/login.dart';
 import 'package:flutter/material.dart';
 
-class CadTask extends StatelessWidget {
-  const CadTask({super.key});
+class idTask_Pub {
+  static int idTsk = 0;
+}
+
+//static int idTask_Pub = 0;
+
+class Task extends StatelessWidget {
+  //const Task({super.key});
+
+  final String itemm;
+
+  int idTask;
+
+  Task({Key? key, required this.itemm, required this.idTask}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    idTask_Pub.idTsk = idTask;
+
+    //db_sqlite sqfliteInst = db_sqlite();
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Criar nova Tarefa'),
+          title: Text('Editar Tarefa'),
         ),
         body: const Padding(
           padding: EdgeInsets.all(16.0),
-          child: MyForm(),
+          child: MyTask(),
         ),
       ),
     );
   }
 }
 
-class MyForm extends StatefulWidget {
-  const MyForm({super.key});
+class MyTask extends StatefulWidget {
+  const MyTask({super.key});
 
   @override
-  State<MyForm> createState() => _MyFormState();
+  State<MyTask> createState() => _MyFormState();
 }
 
-class _MyFormState extends State<MyForm> {
+class _MyFormState extends State<MyTask> {
   final TextEditingController dtInicio = TextEditingController();
   final TextEditingController dtFim = TextEditingController();
   final TextEditingController titulo = TextEditingController();
   final TextEditingController descricao =
       TextEditingController(); //, dtInicio, dtFim;
-/*
-  @override
-  void dispose() {
-    // Libera os recursos do controlador
-    titulo.dispose();
-    super.dispose();
+
+  void initState() {
+    super.initState();
+    loadTask();
   }
-*/
+
+  Future<void> loadTask() async {
+    Map<String, Object?> dados = await getTask(idTask_Pub.idTsk);
+    setState(() {
+      titulo.text = dados['titulo']!.toString();
+      descricao.text = dados['descricao']!.toString();
+      dtFim.text = dados['data_final']!.toString();
+    });
+  }
+
+  Future<Map<String, Object?>> getTask(int id) async {
+    db_sqlite sqfliteInst = db_sqlite();
+    return await sqfliteInst.getTaskByIdTask(idTask_Pub.idTsk);
+  }
+
   Future<void> _selectDate(
       BuildContext context, TextEditingController controller) async {
     DateTime? pickedDate = await showDatePicker(
@@ -132,8 +159,10 @@ class _MyFormState extends State<MyForm> {
             alignment: const Alignment(0.0, 0.0),
             child: MaterialButton(
               onPressed: () async {
-                if (titulo.text != "" && (_DropdownFieldState.categoria != null)) {
-                  sqfliteInst.insertTask(
+                if (titulo.text != "" &&
+                    (_DropdownFieldState.categoria != null)) {
+                  sqfliteInst.updateTask(
+                      idTask_Pub.idTsk,
                       user_Pub.userOn,
                       titulo.text,
                       descricao.text,
@@ -144,7 +173,7 @@ class _MyFormState extends State<MyForm> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => Dashboard()),
-                  );                  
+                  );
                 }
               },
               color: const Color(0xff2f34c5),
@@ -158,7 +187,7 @@ class _MyFormState extends State<MyForm> {
               height: 50,
               minWidth: 100,
               child: Text(
-                "Cadastrar",
+                "Salvar",
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
