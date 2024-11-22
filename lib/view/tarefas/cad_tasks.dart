@@ -34,8 +34,7 @@ class _MyFormState extends State<MyForm> {
   final TextEditingController dtInicio = TextEditingController();
   final TextEditingController dtFim = TextEditingController();
   final TextEditingController titulo = TextEditingController();
-  final TextEditingController descricao =
-      TextEditingController(); //, dtInicio, dtFim;
+  final TextEditingController descricao = TextEditingController(); //, dtInicio, dtFim;
 /*
   @override
   void dispose() {

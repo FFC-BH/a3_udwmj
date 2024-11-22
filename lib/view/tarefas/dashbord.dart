@@ -1,7 +1,6 @@
 import 'package:a3_udwmj/controller/db_sqlite.dart';
-import 'package:a3_udwmj/controller/api_sdm.dart';
 import 'package:a3_udwmj/view/tarefas/cad_tasks.dart';
-import 'package:a3_udwmj/view/tarefas/edit_task.dart';
+import 'package:a3_udwmj/view/tarefas/task.dart';
 import 'package:a3_udwmj/view/usuarios/login.dart';
 import 'package:flutter/material.dart';
 
@@ -74,7 +73,7 @@ class _CardListScreenState extends State<Dashboard> {
                   color: Colors.primaries[index % Colors.primaries.length],
                   child: InkWell(
                     onTap: () {
-                      print("TESTE");
+                     
                 
                 Navigator.push(
                   context,

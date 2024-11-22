@@ -24,18 +24,18 @@ void sincronize(int seconds) {
 
       // Tarefas:
 
-      final List<Map<String, dynamic>> tsksSqlite = await db_sqlite().getTasksByIdUser(user_Pub.userOn);
-      final List<Map<String, dynamic>> tsksApi = await getTasks();
+     // final List<Map<String, dynamic>> tsksSqlite = await db_sqlite().getTasksByIdUser(user_Pub.userOn);
+     // final List<Map<String, dynamic>> tsksApi = await getTasks();
 
       // Tarefas : Sqlite --> Api
 
-      print('tsksSqlite');
-      print(tsksSqlite!.length); 
+     // print('tsksSqlite');
+     // print(tsksSqlite!.length); 
 
       // Tarefas : Api --> Sqlite
 
-      print('tsksApi');
-      print(tsksApi!.length); 
+     // print('tsksApi');
+     // print(tsksApi!.length); 
      
 
     }

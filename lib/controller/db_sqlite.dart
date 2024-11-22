@@ -120,6 +120,7 @@ class db_sqlite {
           'usuarioId': usuarioId,
           'titulo': titulo,
           'descricao': descricao,
+          'time': DateTime.now().toString(),
           'data_inicial': dataInicial,
           'data_final': dataFinal,
           'categoria': categoria,

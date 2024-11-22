@@ -1,26 +1,23 @@
 import 'package:a3_udwmj/controller/db_sqlite.dart';
 import 'package:a3_udwmj/view/tarefas/dashbord.dart';
+import 'package:a3_udwmj/view/tarefas/task.dart';
 import 'package:a3_udwmj/view/usuarios/login.dart';
 import 'package:flutter/material.dart';
 
-class idTask_Pub {
-  static int idTsk = 0;
-}
 
-//static int idTask_Pub = 0;
-
-class Task extends StatelessWidget {
+class EditTask extends StatelessWidget {
   //const Task({super.key});
 
-  final String itemm;
+ // final String itemm;
 
-  int idTask;
+  
 
-  Task({Key? key, required this.itemm, required this.idTask}) : super(key: key);
+  //EditTask({Key? key, required this.itemm, required this.idTask}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    idTask_Pub.idTsk = idTask;
+   // int idTask;
+   // idTask_Pub.idTsk = idTask;
 
     //db_sqlite sqfliteInst = db_sqlite();
 
@@ -62,6 +59,7 @@ class _MyFormState extends State<MyTask> {
     setState(() {
       titulo.text = dados['titulo']!.toString();
       descricao.text = dados['descricao']!.toString();
+      dtInicio.text = dados['data_inicial']!.toString();
       dtFim.text = dados['data_final']!.toString();
     });
   }
@@ -118,7 +116,7 @@ class _MyFormState extends State<MyTask> {
           children: [
             Expanded(
               child: TextField(
-                controller: dtInicio, //dtInicio = dateController1,
+                controller: dtInicio,
                 readOnly: true,
                 decoration: InputDecoration(
                   labelText: 'Data Início*',
@@ -170,10 +168,10 @@ class _MyFormState extends State<MyTask> {
                       dtFim.text,
                       _DropdownFieldState.categoria.toString(),
                       "status");
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Dashboard()),
-                  );
+               //   Navigator.push(
+                //    context,
+                   // MaterialPageRoute(builder: (context) => Task(idTask_Pub.idTsk)),
+                //  );
                 }
               },
               color: const Color(0xff2f34c5),
@@ -204,10 +202,10 @@ class _MyFormState extends State<MyTask> {
             alignment: const Alignment(0, 0.0),
             child: MaterialButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Dashboard()),
-                );
+              //  Navigator.push(
+              //    context,
+                 // MaterialPageRoute(builder: (context) => Dashboard()),
+              //  );
               },
               color: const Color(0xff100202),
               elevation: 0,
