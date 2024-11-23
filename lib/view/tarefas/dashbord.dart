@@ -73,12 +73,13 @@ class _CardListScreenState extends State<Dashboard> {
                   color: Colors.primaries[index % Colors.primaries.length],
                   child: InkWell(
                     onTap: () {
-                     
+                     idTask_Pub.idTsk = item["id"];
                 
                 Navigator.push(
                   context,
                   MaterialPageRoute(        
-                     builder: (context) => Task(itemm: item["titulo"], idTask: item["id"]),
+                     builder: (context) => Task(),
+                    //builder: (context) => Task(itemm: item["titulo"], idTask: item["id"]),
                   ),
                 );
 
@@ -154,12 +155,22 @@ class _CardListScreenState extends State<Dashboard> {
               child: Icon(Icons.add),
             ),
           ),
+          RodapeApk(context),
+         ],
+      ),
+     
+    );
+  }
+}
 
-          Container(                  
+Container RodapeApk(BuildContext context){
+
+  return Container(
+                        
                   margin: const EdgeInsets.fromLTRB(0, 25, 0, 0),
                   padding: const EdgeInsets.all(0),
                   width: MediaQuery.of(context).size.width,
-                  height: 130,
+                  height: MediaQuery.of(context).size.height * 0.15,
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(211, 14, 44, 133),
                     shape: BoxShape.rectangle,
@@ -250,10 +261,10 @@ class _CardListScreenState extends State<Dashboard> {
                     ],
                   ),
                 
-                ),
-        ],
-      ),
-     
-    );
-  }
+                
+        
+
+  );
+
+
 }

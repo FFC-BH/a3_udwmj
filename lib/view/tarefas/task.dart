@@ -12,15 +12,15 @@ class idTask_Pub {
 class Task extends StatelessWidget {
   //const Task({super.key});
 
-  final String itemm;
+ // final String itemm;
 
-  int idTask;
-
-  Task({Key? key, required this.itemm, required this.idTask}) : super(key: key);
+  //int idTask;
+// Task({Key? key, required this.itemm, required this.idTask}) : super(key: key);
+  //Task({Key? key, required this.itemm, required this.idTask}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    idTask_Pub.idTsk = idTask;
+   // idTask_Pub.idTsk = idTask;
 
     //db_sqlite sqfliteInst = db_sqlite();
 
@@ -57,7 +57,8 @@ class _MyFormState extends State<MyTask> {
   final TextEditingController dtInicio = TextEditingController();
   final TextEditingController dtFim = TextEditingController();
   final TextEditingController titulo = TextEditingController();
-  final TextEditingController descricao = TextEditingController(); //, dtInicio, dtFim;
+  final TextEditingController descricao = TextEditingController();
+  final TextEditingController categoria = TextEditingController();
 
   void initState() {
     super.initState();
@@ -71,6 +72,8 @@ class _MyFormState extends State<MyTask> {
       descricao.text = dados['descricao']!.toString();
       dtInicio.text = dados['data_inicial']!.toString();
       dtFim.text = dados['data_final']!.toString();
+      //_DropdownFieldState.categoria = dados['categoria']!.toString();
+      categoria.text = dados['categoria']!.toString();
     });
   }
 
@@ -168,6 +171,8 @@ class _MyFormState extends State<MyTask> {
         
 
         TextField(
+         // enabled: false,
+          readOnly: true,
           controller: titulo,
           maxLines: 1,
           decoration: const InputDecoration(
@@ -177,6 +182,8 @@ class _MyFormState extends State<MyTask> {
         ),
         const SizedBox(height: 20),
         TextField(
+         // enabled: false,
+          readOnly: true,
           controller: descricao,
           maxLines: 4,
           decoration: const InputDecoration(
@@ -189,7 +196,9 @@ class _MyFormState extends State<MyTask> {
           children: [
             Expanded(
               child: TextField(
-                controller: dtInicio, //dtInicio = dateController1,
+               //  enabled: false,
+                 
+                controller: dtInicio, 
                 readOnly: true,
                 decoration: InputDecoration(
                   labelText: 'Data Início*',
@@ -204,6 +213,7 @@ class _MyFormState extends State<MyTask> {
             const SizedBox(width: 20),
             Expanded(
               child: TextField(
+               //  enabled: false,
                 controller: dtFim,
                 readOnly: true,
                 decoration: InputDecoration(
@@ -219,114 +229,29 @@ class _MyFormState extends State<MyTask> {
           ],
         ),
         const SizedBox(height: 20),
-        const Padding(
-          padding: EdgeInsets.all(0.0),
-          child: DropdownField(),
+        Padding(
+          padding: const EdgeInsets.all(0.0),
+          child: //DropdownField(),
+                  TextField(
+         // enabled: false,
+          readOnly: true,
+          controller: categoria,
+          maxLines: 4,
+          decoration: const InputDecoration(
+            labelText: 'Categoria',
+            border: OutlineInputBorder(),
+          ),
         ),
-        const SizedBox(height: 20),
-        Container(                  
-                  margin: const EdgeInsets.fromLTRB(0, 25, 0, 0),
-                  padding: const EdgeInsets.all(0),
-                  width: MediaQuery.of(context).size.width,
-                  height: 130,
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(211, 14, 44, 133),
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.zero,
-                    border: Border.all(color: const Color(0x4d9e9e9e), width: 1),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [                      
-                      Expanded(
-                        flex: 1,
-                        child: IconButton( 
-
-                          icon: ClipRRect(
-                             borderRadius: BorderRadius.circular(8.0), // Ajusta os cantos se necessário
-                             child: Image.asset('assets/Dashboard.png', // Caminho para a imagem
-                             width: 200, // Ajusta o tamanho desejado
-                             height: 80,
-                             fit: BoxFit.cover, // Ajusta como a imagem se encaixa                            
-                              ),                             
-                          ),
-                             
-                          onPressed: () {},
-                          color: Color.fromARGB(255, 45, 57, 127),
-                          iconSize: 24,                          
-                        ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: IconButton(
-
-                          icon: ClipRRect(
-                             borderRadius: BorderRadius.circular(8.0), // Ajusta os cantos se necessário
-                             child: Image.asset('assets/Calendario.png', // Caminho para a imagem
-                             width: 200, // Ajusta o tamanho desejado
-                             height: 80,
-                             fit: BoxFit.cover, // Ajusta como a imagem se encaixa                            
-                              ),                             
-                          ),         
-
-                          onPressed: () {},
-                          color: Color.fromARGB(255, 101, 110, 163),
-                          iconSize: 24,
-                          
-                        ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: IconButton(
-
-                          icon: ClipRRect(
-                             borderRadius: BorderRadius.circular(8.0), // Ajusta os cantos se necessário
-                             child: Image.asset('assets/Settings.png', // Caminho para a imagem
-                             width: 200, // Ajusta o tamanho desejado
-                             height: 80,
-                             fit: BoxFit.cover, // Ajusta como a imagem se encaixa                            
-                              ),                             
-                          ),       
-
-                          onPressed: () {},
-                          color: Color(0xff212435),
-                          iconSize: 24,
-                        ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: IconButton(
-
-                          icon: ClipRRect(
-                             borderRadius: BorderRadius.circular(8.0), // Ajusta os cantos se necessário
-                             child: Image.asset('assets/Perfil.png', // Caminho para a imagem
-                             width: 200, // Ajusta o tamanho desejado
-                             height: 80,
-                             fit: BoxFit.cover, // Ajusta como a imagem se encaixa                            
-                              ),                             
-                          ),
-                          
-                          onPressed: () {},                                  
-
-
-                         
-                          color: Color(0xff212435),
-                          iconSize: 24,
-                        ),
-                      ),
-                    ],
-                  ),
-                
-                ),
+        ),
+        const SizedBox(height: 50),
+        RodapeApk(context),
         
-      ],
+        ],
     )
     );
   }
 }
-
+/*
 class DropdownField extends StatefulWidget {
   const DropdownField({super.key});
 
@@ -351,6 +276,7 @@ class _DropdownFieldState extends State<DropdownField> {
         border: OutlineInputBorder(),
       ),
       value: categoria,
+      
       isExpanded: true,
       items: options.map((String option) {
         return DropdownMenuItem<String>(
@@ -366,3 +292,4 @@ class _DropdownFieldState extends State<DropdownField> {
     );
   }
 }
+*/

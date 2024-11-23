@@ -61,6 +61,7 @@ class _MyFormState extends State<MyTask> {
       descricao.text = dados['descricao']!.toString();
       dtInicio.text = dados['data_inicial']!.toString();
       dtFim.text = dados['data_final']!.toString();
+      _DropdownFieldState.categoria = dados['categoria']!.toString();
     });
   }
 
@@ -168,10 +169,10 @@ class _MyFormState extends State<MyTask> {
                       dtFim.text,
                       _DropdownFieldState.categoria.toString(),
                       "status");
-               //   Navigator.push(
-                //    context,
-                   // MaterialPageRoute(builder: (context) => Task(idTask_Pub.idTsk)),
-                //  );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Task()),
+                  );
                 }
               },
               color: const Color(0xff2f34c5),
@@ -202,10 +203,10 @@ class _MyFormState extends State<MyTask> {
             alignment: const Alignment(0, 0.0),
             child: MaterialButton(
               onPressed: () {
-              //  Navigator.push(
-              //    context,
-                 // MaterialPageRoute(builder: (context) => Dashboard()),
-              //  );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Task()),
+                );
               },
               color: const Color(0xff100202),
               elevation: 0,
