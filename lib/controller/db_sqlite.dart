@@ -105,6 +105,15 @@ class db_sqlite {
     
     return valor?.toString() ?? '';
   }
+
+  Future<Map<String, Object?>> searchUserByEmail2(String email) async {
+    final db = await openMyDatabase();
+
+    List<Map<String, Object?>> usr = (await db.query('usuario',
+            columns: ['id', 'senha'], where: 'email = ?', whereArgs: [email])); // as Future<List<Map<String, Object?>>>;
+
+    return usr[0];
+  }
   
   
 

@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 
 
 class EditTask extends StatelessWidget {
+  const EditTask({super.key});
+
   //const Task({super.key});
 
  // final String itemm;
@@ -24,7 +26,7 @@ class EditTask extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Editar Tarefa'),
+          title: const Text('Editar Tarefa'),
         ),
         body: const Padding(
           padding: EdgeInsets.all(16.0),
@@ -46,9 +48,9 @@ class _MyFormState extends State<MyTask> {
   final TextEditingController dtInicio = TextEditingController();
   final TextEditingController dtFim = TextEditingController();
   final TextEditingController titulo = TextEditingController();
-  final TextEditingController descricao =
-      TextEditingController(); //, dtInicio, dtFim;
-
+  final TextEditingController descricao = TextEditingController();
+  
+  @override
   void initState() {
     super.initState();
     loadTask();
@@ -147,7 +149,7 @@ class _MyFormState extends State<MyTask> {
           ],
         ),
         const SizedBox(height: 20),
-        const Padding(
+        const Padding(              // Categoria
           padding: EdgeInsets.all(0.0),
           child: DropdownField(),
         ),
@@ -185,7 +187,7 @@ class _MyFormState extends State<MyTask> {
               textColor: const Color(0xffffffff),
               height: 50,
               minWidth: 100,
-              child: Text(
+              child: const Text(
                 "Salvar",
                 style: TextStyle(
                   fontSize: 14,
@@ -218,7 +220,7 @@ class _MyFormState extends State<MyTask> {
               textColor: const Color(0xffffffff),
               height: 50,
               minWidth: 100,
-              child: Text(
+              child: const Text(
                 "Cancelar",
                 style: TextStyle(
                   fontSize: 14,

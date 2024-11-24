@@ -1,8 +1,6 @@
-import 'package:a3_udwmj/view/usuarios/login.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
-import 'package:a3_udwmj/controller/db_sqlite.dart';
 
 String url = 'https://api-sistemas-distribuidos-production-0667.up.railway.app';
 

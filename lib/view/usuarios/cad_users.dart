@@ -1,7 +1,6 @@
 import 'package:a3_udwmj/view/home.dart';
 import 'package:a3_udwmj/view/usuarios/login.dart';
 import 'package:a3_udwmj/controller/db_sqlite.dart';
-import 'package:a3_udwmj/controller/api_sdm.dart';
 
 import 'package:flutter/material.dart';
 

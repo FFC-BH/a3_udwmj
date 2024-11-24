@@ -15,6 +15,8 @@ class Dashboard extends StatelessWidget {
 }
 */
 class Dashboard extends StatefulWidget {
+  const Dashboard({super.key});
+
   @override
   _CardListScreenState createState() => _CardListScreenState();
 }
@@ -51,7 +53,7 @@ class _CardListScreenState extends State<Dashboard> {
     
     return Scaffold(
       appBar: AppBar(
-        title: Text('Dashboard'),
+        title: const Text('Dashboard'),
         leading: Padding(
             padding: const EdgeInsets.all(8.0), // Adiciona margem à imagem
             child: Image.asset(
@@ -100,17 +102,17 @@ class _CardListScreenState extends State<Dashboard> {
                                       children: [
                                         Text(
                                           '${item["titulo"]}',
-                                          style: TextStyle(fontSize: 16),
+                                          style: const TextStyle(fontSize: 16),
                                         ),
-                                        SizedBox(height: 8),
+                                        const SizedBox(height: 8),
                                         Text(
                                           '${item["descricao"]}',
-                                          style: TextStyle(fontSize: 16),
+                                          style: const TextStyle(fontSize: 16),
                                         ),
-                                        SizedBox(height: 8),
+                                        const SizedBox(height: 8),
                                         Text(
                                           '${item["status"]}',
-                                          style: TextStyle(fontSize: 16),
+                                          style: const TextStyle(fontSize: 16),
                                         ),
                                       ],
                                     ),
@@ -118,7 +120,7 @@ class _CardListScreenState extends State<Dashboard> {
                                   Expanded(
                                     child: Text(
                                       'Prazo\n${item["data_final"]}',
-                                      style: TextStyle(fontSize: 16),
+                                      style: const TextStyle(fontSize: 16),
                                       textAlign: TextAlign.right,
                                     ),
                                   ),
@@ -152,7 +154,7 @@ class _CardListScreenState extends State<Dashboard> {
                                           builder: (context) => const CadTask()),
                                     );
               },
-              child: Icon(Icons.add),
+              child: const Icon(Icons.add),
             ),
           ),
           RodapeApk(context),
@@ -196,7 +198,7 @@ Container RodapeApk(BuildContext context){
                           ),
                              
                           onPressed: () {},
-                          color: Color.fromARGB(255, 45, 57, 127),
+                          color: const Color.fromARGB(255, 45, 57, 127),
                           iconSize: 24,                          
                         ),
                       ),
@@ -214,7 +216,7 @@ Container RodapeApk(BuildContext context){
                           ),         
 
                           onPressed: () {},
-                          color: Color.fromARGB(255, 101, 110, 163),
+                          color: const Color.fromARGB(255, 101, 110, 163),
                           iconSize: 24,
                           
                         ),
@@ -233,7 +235,7 @@ Container RodapeApk(BuildContext context){
                           ),       
 
                           onPressed: () {},
-                          color: Color(0xff212435),
+                          color: const Color(0xff212435),
                           iconSize: 24,
                         ),
                       ),
@@ -254,7 +256,7 @@ Container RodapeApk(BuildContext context){
 
 
                          
-                          color: Color(0xff212435),
+                          color: const Color(0xff212435),
                           iconSize: 24,
                         ),
                       ),

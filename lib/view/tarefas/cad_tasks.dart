@@ -139,7 +139,7 @@ class _MyFormState extends State<MyForm> {
                       dtInicio.text,
                       dtFim.text,
                       _DropdownFieldState.categoria.toString(),
-                      "status");
+                      "Em Progresso");
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => Dashboard()),
@@ -156,7 +156,7 @@ class _MyFormState extends State<MyForm> {
               textColor: const Color(0xffffffff),
               height: 50,
               minWidth: 100,
-              child: Text(
+              child: const Text(
                 "Cadastrar",
                 style: TextStyle(
                   fontSize: 14,
@@ -189,7 +189,7 @@ class _MyFormState extends State<MyForm> {
               textColor: const Color(0xffffffff),
               height: 50,
               minWidth: 100,
-              child: Text(
+              child: const Text(
                 "Cancelar",
                 style: TextStyle(
                   fontSize: 14,

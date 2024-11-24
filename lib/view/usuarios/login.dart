@@ -12,11 +12,15 @@ class user_Pub {
 class Login extends StatelessWidget {
   const Login({super.key});
 
+  Object? getItemFromMap(Map<String, Object?> map, String key) {
+  return map[key];
+  }
+
   @override
   Widget build(BuildContext context) {
    
     final TextEditingController email, senha;
-
+    //var psw;
     db_sqlite sqfliteInst = db_sqlite();
 
     return Scaffold(
@@ -141,9 +145,20 @@ class Login extends StatelessWidget {
                             alignment: const Alignment(0.0, 0.0),
                             child: MaterialButton(
                               onPressed: () async {
+
+                                var psw = await sqfliteInst.searchUserByEmail2(email.text);
+
                                 if (email.text != "" && senha.text != "") {
-                                  if (await sqfliteInst.searchUserByEmail(email.text) == (senha.text)){
-                                      
+                                  //if (await sqfliteInst.searchUserByEmail(email.text) == (senha.text)){
+                                  if (getItemFromMap(psw, 'senha') == (senha.text)){   
+                                     //var psw = await sqfliteInst.searchUserByEmail2(email.text);
+                                   // usr_obj = usr_map['id'];
+                                   // user_Pub.userOn = int.parse(usr_obj);
+                                      //String? name = psw['id'] as String?;
+                                    user_Pub.userOn = int.parse(getItemFromMap(psw, 'id').toString());
+                                    print('user_Pub.userOn');
+                                    print(user_Pub.userOn);
+
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
