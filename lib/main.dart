@@ -25,7 +25,24 @@ class MainApp extends StatelessWidget {
    // LoginPage.tag: (context) => LoginPage(),
    // Home.tag: (context) => Home(),
  // };
- 
+  
+ ThemeData temaClaro = ThemeData(
+  brightness: Brightness.light,
+  // Outras configurações do tema claro
+);
+
+ThemeData temaEscuro = ThemeData(
+  brightness: Brightness.dark,
+  // Outras configurações do tema escuro
+);
+
+bool temaEscuroAtivo = false;
+
+void alternarTema() {
+  setState(() {
+    temaEscuroAtivo = !temaEscuroAtivo;
+  });
+}
   @override
   Widget build(BuildContext context) {
     return MaterialApp(      
