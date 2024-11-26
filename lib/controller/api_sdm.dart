@@ -1,3 +1,4 @@
+import 'package:a3_udwmj/main.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
@@ -78,7 +79,10 @@ Future<int> cadUser(email, senha, nome) async {
   );
   print("cadUser: response.body: ");
   print(response.body);
-  return response.statusCode;  
+  //mostrarErro(context, mensagem)
+  return response.statusCode;
+
+    
 }
 
 Future<int> loginUser(email, senha) async {
@@ -123,6 +127,22 @@ Future<int> forgotPswrd(email) async {
   //return int.parse(response.statusCode);
   return response.statusCode;
 } 
+
+Future<int> deleteUser(uid) async {
+  final response = await http.delete(
+    Uri.parse('$url/api/users/delete'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      "uid": uid,
+    }),
+  );
+  print("cadUser: response.body: ");
+  print(response.body);
+  return response.statusCode;  
+}
+
 
 // Tarefas
 

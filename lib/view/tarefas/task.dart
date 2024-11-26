@@ -155,7 +155,7 @@ class _MyFormState extends State<MyTask> {
                   
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Dashboard()),
+                    MaterialPageRoute(builder: (context) => const Dashboard()),
                   );
                 }
                  
@@ -178,7 +178,7 @@ class _MyFormState extends State<MyTask> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => EditTask()),
+                    MaterialPageRoute(builder: (context) => const EditTask()),
                   );
                 },
                 child: const Icon(Icons.edit),
@@ -193,7 +193,7 @@ class _MyFormState extends State<MyTask> {
 
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Dashboard()),
+                    MaterialPageRoute(builder: (context) => const Dashboard()),
                   );
                 },
                 child: const Icon(Icons.delete_forever),
@@ -236,7 +236,7 @@ class _MyFormState extends State<MyTask> {
 
 
             ),    
-            SizedBox(width: 20),
+            const SizedBox(width: 20),
             Expanded(
               child:
                 

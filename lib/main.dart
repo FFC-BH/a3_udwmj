@@ -19,31 +19,31 @@ void main() async {
 
 class MainApp extends StatelessWidget {
 
-  const MainApp({super.key});
+  MainApp({super.key});
  
   //final routes = <String, WidgetBuilder>{
    // LoginPage.tag: (context) => LoginPage(),
    // Home.tag: (context) => Home(),
- // };
+
   
- ThemeData temaClaro = ThemeData(
-  brightness: Brightness.light,
+    ThemeData temaClaro = ThemeData(
+   brightness: Brightness.light,
   // Outras configurações do tema claro
-);
+    );
 
-ThemeData temaEscuro = ThemeData(
-  brightness: Brightness.dark,
+  ThemeData temaEscuro = ThemeData(
+   brightness: Brightness.dark,
   // Outras configurações do tema escuro
-);
+    );
 
-bool temaEscuroAtivo = false;
+  bool temaEscuroAtivo = false;
 
-void alternarTema() {
-  setState(() {
-    temaEscuroAtivo = !temaEscuroAtivo;
-  });
-}
-  @override
+ // void alternarTema() {
+ // setState(() {
+ //   temaEscuroAtivo = !temaEscuroAtivo;
+ // });
+
+   @override
   Widget build(BuildContext context) {
     return MaterialApp(      
       useInheritedMediaQuery: true,
@@ -60,4 +60,45 @@ void alternarTema() {
     );
   }
 
+}
+
+void mostrarErro(BuildContext context, String mensagem) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text("Erro"),
+        content: Text(mensagem),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text("OK"),
+          ),
+        ],
+      );
+    },
+  );
+}
+
+// Função para mostrar um pop-up de sucesso
+void mostrarSucesso(BuildContext context, String mensagem) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text("Sucesso"),
+        content: Text(mensagem),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text("OK"),
+          ),
+        ],
+      );
+    },
+  );
 }

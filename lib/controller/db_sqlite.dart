@@ -2,6 +2,7 @@
 CRUD
 */
 
+import 'package:a3_udwmj/controller/api_sdm.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart'
@@ -36,13 +37,7 @@ class db_sqlite {
               categoria TEXT,
               status TEXT,
               FOREIGN KEY (usuarioId) REFERENCES usuario (id) ON DELETE CASCADE
-           );
-            CREATE TABLE IF NOT EXISTS lembrete (
-              id INTEGER PRIMARY KEY AUTOINCREMENT,
-              tarefaId INTEGER,
-              data TEXT,
-              FOREIGN KEY (tarefaId) REFERENCES tarefa (id) ON DELETE CASCADE
-           );
+           );            
            ''');
     });
   }
@@ -58,6 +53,9 @@ class db_sqlite {
           'senha': senha,
         },
         conflictAlgorithm: ConflictAlgorithm.replace);
+
+    cadUser(email, senha, nome);
+
   }
 
   Future<void> deleteUser(int id) async {

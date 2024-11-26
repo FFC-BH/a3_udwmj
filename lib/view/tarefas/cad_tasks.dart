@@ -142,7 +142,7 @@ class _MyFormState extends State<MyForm> {
                       "Em Progresso");
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Dashboard()),
+                    MaterialPageRoute(builder: (context) => const Dashboard()),
                   );                  
                 }
               },
@@ -176,7 +176,7 @@ class _MyFormState extends State<MyForm> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Dashboard()),
+                  MaterialPageRoute(builder: (context) => const Dashboard()),
                 );
               },
               color: const Color(0xff100202),

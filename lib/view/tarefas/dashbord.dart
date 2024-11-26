@@ -1,4 +1,5 @@
 import 'package:a3_udwmj/controller/db_sqlite.dart';
+import 'package:a3_udwmj/view/config/settings.dart';
 import 'package:a3_udwmj/view/tarefas/cad_tasks.dart';
 import 'package:a3_udwmj/view/tarefas/task.dart';
 import 'package:a3_udwmj/view/usuarios/login.dart';
@@ -80,7 +81,7 @@ class _CardListScreenState extends State<Dashboard> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(        
-                     builder: (context) => Task(),
+                     builder: (context) => const Task(),
                     //builder: (context) => Task(itemm: item["titulo"], idTask: item["id"]),
                   ),
                 );
@@ -171,7 +172,7 @@ Container RodapeApk(BuildContext context){
                         
                   margin: const EdgeInsets.fromLTRB(0, 25, 0, 0),
                   padding: const EdgeInsets.all(0),
-                  width: MediaQuery.of(context).size.width,
+                  width: double.infinity,//MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height * 0.15,
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(211, 14, 44, 133),
@@ -197,7 +198,15 @@ Container RodapeApk(BuildContext context){
                               ),                             
                           ),
                              
-                          onPressed: () {},
+                          onPressed: () {
+
+                            Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => const Dashboard()),
+                                    );
+
+                          },
                           color: const Color.fromARGB(255, 45, 57, 127),
                           iconSize: 24,                          
                         ),
@@ -234,7 +243,15 @@ Container RodapeApk(BuildContext context){
                               ),                             
                           ),       
 
-                          onPressed: () {},
+                          onPressed: () {
+
+                              Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => const Settings()),
+                                    );
+
+                          },
                           color: const Color(0xff212435),
                           iconSize: 24,
                         ),

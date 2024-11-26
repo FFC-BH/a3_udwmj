@@ -1,5 +1,4 @@
 import 'package:a3_udwmj/controller/db_sqlite.dart';
-import 'package:a3_udwmj/view/tarefas/dashbord.dart';
 import 'package:a3_udwmj/view/tarefas/task.dart';
 import 'package:a3_udwmj/view/usuarios/login.dart';
 import 'package:flutter/material.dart';
@@ -173,7 +172,7 @@ class _MyFormState extends State<MyTask> {
                       "status");
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Task()),
+                    MaterialPageRoute(builder: (context) => const Task()),
                   );
                 }
               },
@@ -207,7 +206,7 @@ class _MyFormState extends State<MyTask> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Task()),
+                  MaterialPageRoute(builder: (context) => const Task()),
                 );
               },
               color: const Color(0xff100202),
