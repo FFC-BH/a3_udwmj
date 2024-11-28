@@ -8,34 +8,17 @@ class idTask_Pub {
   static int idTsk = 0;
 }
 
-//static int idTask_Pub = 0;
-
-
-
 class Task extends StatelessWidget {
   const Task({super.key});
 
-  
-  //const Task({super.key});
-  
-  // final String itemm;
-
-  //int idTask;
-// Task({Key? key, required this.itemm, required this.idTask}) : super(key: key);
-  //Task({Key? key, required this.itemm, required this.idTask}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    // idTask_Pub.idTsk = idTask;
-
-    //db_sqlite sqfliteInst = db_sqlite();
-
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Dashboard'),
           leading: Padding(
-            padding: const EdgeInsets.all(8.0), // Adiciona margem à imagem
+            padding: const EdgeInsets.all(8.0),
             child: Image.asset(
               'assets/Taskify.png',
               fit: BoxFit.contain,
@@ -80,12 +63,6 @@ class _MyFormState extends State<MyTask> {
       dtFim.text = dados['data_final']!.toString();
       DropdownUtils.StatusDropdownValue = dados['status']!.toString();
       DropdownUtils.CategoriaDropdownValue = dados['categoria']!.toString();
-     
-
-     //print("DropdownUtils.StatusDropdownValue");
-     //print(DropdownUtils.StatusDropdownValue);
-      //_DropdownFieldState.categoria = dados['categoria']!.toString();
-      //categoria.text = dados['categoria']!.toString();
     });
   }
 
@@ -113,14 +90,7 @@ class _MyFormState extends State<MyTask> {
 
   @override
   Widget build(BuildContext context) {
-    
     db_sqlite sqfliteInst = db_sqlite();
-   
-    
-
-   // static var StatusDropdownValue;
-
-   // var CategoriaDropdownValue;
 
     var value;
     return Scaffold(
@@ -133,32 +103,23 @@ class _MyFormState extends State<MyTask> {
             Expanded(
               child: TextButton(
                 onPressed: () {
-                  
-                   print("StatusDropdownValue");
-                //  print(DropdownUtils.StatusDropdownValue.toString());
+                  if (titulo.text != "" && (descricao.text != "")) {
+                    sqfliteInst.updateTask(
+                        idTask_Pub.idTsk,
+                        user_Pub.userOn,
+                        titulo.text,
+                        descricao.text,
+                        dtInicio.text,
+                        dtFim.text,
+                        DropdownUtils.CategoriaDropdownValue.toString(),
+                        DropdownUtils.StatusDropdownValue.toString());
 
-                  print("CategoriaDropdownValue");
-                 // print(DropdownUtils.CategoriaDropdownValue.toString());
-                  
-                  
-                 if (titulo.text != "" &&
-                    (descricao.text != "")) {
-                      sqfliteInst.updateTask(
-                      idTask_Pub.idTsk,
-                      user_Pub.userOn,
-                      titulo.text,
-                      descricao.text,
-                      dtInicio.text,
-                      dtFim.text,
-                      DropdownUtils.CategoriaDropdownValue.toString(),
-                      DropdownUtils.StatusDropdownValue.toString());
-                  
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Dashboard()),
-                  );
-                }
-                 
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Dashboard()),
+                    );
+                  }
                 },
                 child: const Text(
                   "Voltar",
@@ -172,8 +133,8 @@ class _MyFormState extends State<MyTask> {
             ),
             const SizedBox(width: 20),
             Positioned(
-              bottom: 0, // Distância da parte inferior
-              right: 0, // Distância da parte direita
+              bottom: 0,
+              right: 0,
               child: FloatingActionButton(
                 onPressed: () {
                   Navigator.push(
@@ -185,8 +146,8 @@ class _MyFormState extends State<MyTask> {
               ),
             ),
             Positioned(
-              bottom: 0, // Distância da parte inferior
-              right: 0, // Distância da parte direita
+              bottom: 0,
+              right: 0,
               child: FloatingActionButton(
                 onPressed: () {
                   sqfliteInst.deleteTask(idTask_Pub.idTsk);
@@ -216,49 +177,28 @@ class _MyFormState extends State<MyTask> {
         Row(
           children: [
             Expanded(
-              child: 
-                
-               DropdownUtils.StatusDropdown(
-              value: DropdownUtils.StatusDropdownValue, //"Atrasado"
-              onChanged: (newValue) {
-                setState(() {
-                  DropdownUtils.StatusDropdownValue = newValue;
-                   // newValue;
-                   print("Status");
-                   print(newValue);
-                   print("value");
-                   print(value);
-                 // print(DropdownUtils.StatusDropdownValue);
-
-                });
-              },
-            ), 
-
-
-            ),    
+              child: DropdownUtils.StatusDropdown(
+                value: DropdownUtils.StatusDropdownValue, //"Atrasado"
+                onChanged: (newValue) {
+                  setState(() {
+                    DropdownUtils.StatusDropdownValue = newValue;
+                  });
+                },
+              ),
+            ),
             const SizedBox(width: 20),
             Expanded(
-              child:
-                
-                     DropdownUtils.CategoriaDropdown(
-              value: DropdownUtils.CategoriaDropdownValue,//"Tarefa"
-              onChanged: (newValue) {
-                setState(() {
-                  DropdownUtils.CategoriaDropdownValue = newValue;
-                 // newValue;
-                  print("Categoria");
-                  print(DropdownUtils.CategoriaDropdownValue.toString());
-                 // value = newValue;
-                });
-              },
-            ), 
-
-
+              child: DropdownUtils.CategoriaDropdown(
+                value: DropdownUtils.CategoriaDropdownValue, //"Tarefa"
+                onChanged: (newValue) {
+                  setState(() {
+                    DropdownUtils.CategoriaDropdownValue = newValue;
+                  });
+                },
+              ),
             ),
-                      
           ],
         ),
-
         const SizedBox(height: 20),
         TextField(
           // enabled: false,
@@ -271,7 +211,8 @@ class _MyFormState extends State<MyTask> {
           ),
         ),
         const SizedBox(height: 20),
-        Row( // Data Inicio e Fim
+        Row(
+          // Data Inicio e Fim
           children: [
             Expanded(
               child: TextField(
@@ -307,26 +248,22 @@ class _MyFormState extends State<MyTask> {
             ),
           ],
         ),
-        const SizedBox(height: 20),        
-               
+        const SizedBox(height: 20),
         const SizedBox(height: 50),
         RodapeApk(context),
       ],
-    )
-    );
+    ));
   }
 }
 
-
 class DropdownUtils {
-  
   static String? StatusDropdownValue, CategoriaDropdownValue;
 
   static Widget StatusDropdown({
     required String? value,
     required ValueChanged<String?> onChanged,
   }) {
-   // value = StatusDropdownValue;
+    // value = StatusDropdownValue;
     return DropdownButtonFormField<String>(
       decoration: const InputDecoration(
         labelText: 'Status',
@@ -348,7 +285,7 @@ class DropdownUtils {
     required String? value,
     required ValueChanged<String?> onChanged,
   }) {
-  //  value = CategoriaDropdownValue;
+    //  value = CategoriaDropdownValue;
     return DropdownButtonFormField<String>(
       decoration: const InputDecoration(
         labelText: 'Categoria',
@@ -366,47 +303,3 @@ class DropdownUtils {
     );
   }
 }
-
-/*
-class DropdownField extends StatefulWidget {
-  const DropdownField({super.key});
-
-  @override
-  State<DropdownField> createState() => _DropdownFieldState();
-}
-
-class _DropdownFieldState extends State<DropdownField> {
-  static String? categoria;
-
-  // Lista de opções
-  final List<String> options = [
-    'Tarefa',
-    'Evento',
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButtonFormField<String>(
-      decoration: const InputDecoration(
-        labelText: 'Categoria',
-        border: OutlineInputBorder(),
-      ),
-      value: categoria,
-      
-      isExpanded: true,
-      items: options.map((String option) {
-        return DropdownMenuItem<String>(
-          value: option,
-          child: Text(option),
-        );
-      }).toList(),
-      onChanged: (String? newValue) {
-        setState(() {
-          categoria = newValue;
-        });
-      },
-    );
-  }
-}
-
-*/

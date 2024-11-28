@@ -1,5 +1,4 @@
 import 'package:a3_udwmj/controller/db_sqlite.dart';
-//import 'package:a3_udwmj/controller/node_js.dart';
 import 'package:a3_udwmj/view/tarefas/dashbord.dart';
 import 'package:a3_udwmj/view/usuarios/login.dart';
 import 'package:flutter/material.dart';
@@ -34,15 +33,8 @@ class _MyFormState extends State<MyForm> {
   final TextEditingController dtInicio = TextEditingController();
   final TextEditingController dtFim = TextEditingController();
   final TextEditingController titulo = TextEditingController();
-  final TextEditingController descricao = TextEditingController(); //, dtInicio, dtFim;
-/*
-  @override
-  void dispose() {
-    // Libera os recursos do controlador
-    titulo.dispose();
-    super.dispose();
-  }
-*/
+  final TextEditingController descricao = TextEditingController();
+
   Future<void> _selectDate(
       BuildContext context, TextEditingController controller) async {
     DateTime? pickedDate = await showDatePicker(
@@ -90,7 +82,7 @@ class _MyFormState extends State<MyForm> {
           children: [
             Expanded(
               child: TextField(
-                controller: dtInicio, //dtInicio = dateController1,
+                controller: dtInicio,
                 readOnly: true,
                 decoration: InputDecoration(
                   labelText: 'Data Início*',
@@ -131,7 +123,8 @@ class _MyFormState extends State<MyForm> {
             alignment: const Alignment(0.0, 0.0),
             child: MaterialButton(
               onPressed: () async {
-                if (titulo.text != "" && (_DropdownFieldState.categoria != null)) {
+                if (titulo.text != "" &&
+                    (_DropdownFieldState.categoria != null)) {
                   sqfliteInst.insertTask(
                       user_Pub.userOn,
                       titulo.text,
@@ -143,7 +136,7 @@ class _MyFormState extends State<MyForm> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const Dashboard()),
-                  );                  
+                  );
                 }
               },
               color: const Color(0xff2f34c5),
@@ -215,7 +208,6 @@ class DropdownField extends StatefulWidget {
 class _DropdownFieldState extends State<DropdownField> {
   static String? categoria;
 
-  // Lista de opções
   final List<String> options = [
     'Tarefa',
     'Evento',

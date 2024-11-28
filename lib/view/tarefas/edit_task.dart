@@ -3,25 +3,11 @@ import 'package:a3_udwmj/view/tarefas/task.dart';
 import 'package:a3_udwmj/view/usuarios/login.dart';
 import 'package:flutter/material.dart';
 
-
 class EditTask extends StatelessWidget {
   const EditTask({super.key});
 
-  //const Task({super.key});
-
- // final String itemm;
-
-  
-
-  //EditTask({Key? key, required this.itemm, required this.idTask}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-   // int idTask;
-   // idTask_Pub.idTsk = idTask;
-
-    //db_sqlite sqfliteInst = db_sqlite();
-
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -48,7 +34,7 @@ class _MyFormState extends State<MyTask> {
   final TextEditingController dtFim = TextEditingController();
   final TextEditingController titulo = TextEditingController();
   final TextEditingController descricao = TextEditingController();
-  
+
   @override
   void initState() {
     super.initState();
@@ -148,7 +134,8 @@ class _MyFormState extends State<MyTask> {
           ],
         ),
         const SizedBox(height: 20),
-        const Padding(              // Categoria
+        const Padding(
+          // Categoria
           padding: EdgeInsets.all(0.0),
           child: DropdownField(),
         ),

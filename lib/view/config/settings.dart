@@ -1,5 +1,7 @@
+import 'package:a3_udwmj/main.dart';
 import 'package:a3_udwmj/view/tarefas/dashbord.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 /*
 PreferredSizeWidget customAppBar({
@@ -395,7 +397,7 @@ class _ExampleScreenState extends State<SettingsSfW> {
 
   @override
   Widget build(BuildContext context) {
-    
+  final themeProvider = Provider.of<ThemeProvider>(context);  
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -429,12 +431,13 @@ class _ExampleScreenState extends State<SettingsSfW> {
                     style: TextStyle(fontSize: 16),
                   ),
                   Switch(
-                    value: modoEscuro,
+                    value: themeProvider.themeMode == ThemeMode.dark,
                     onChanged: (value) {
                       setState(() {
-                        modoEscuro = value;
+                        themeProvider.toggleTheme();
                       });
                     },
+                    
                   ),
                 ],
               ),

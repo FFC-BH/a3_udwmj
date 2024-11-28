@@ -1,4 +1,3 @@
-import 'package:a3_udwmj/main.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
@@ -43,23 +42,6 @@ void sincronize(int seconds) {
   });
 }
 
-
-/* 
-    try {
-      //final data = await fetchDataFromDatabase();
-      
-      setState(() {
-        jsonData = data; // Armazena o JSON retornado na variável
-      });
-    } catch (e) {
-      print('Erro ao carregar os dados: $e');
-    }
-      */
-
-
-
-
-
 Future<int> conect() async {
   final response = await http.get(Uri.parse(url));
   return response.statusCode;
@@ -95,17 +77,9 @@ Future<int> loginUser(email, senha) async {
       "email": email,
       "password": senha,
     }),
-  );
-
-  print("loginUser: response.body: ");
-  print(response.body);
-  print("loginUser: response.statusCode: ");
-  print(response.statusCode);
-
-  // return 200;
-  //return int.parse(response.statusCode);
+  );  
   return response.statusCode;
-} //
+}
 
 Future<int> forgotPswrd(email) async {
   final response = await http.post(
@@ -116,15 +90,7 @@ Future<int> forgotPswrd(email) async {
     body: jsonEncode(<String, String>{
       "email": email,
     }),
-  );
-
-  print("loginUser: response.body: ");
-  print(response.body);
-  print("loginUser: response.statusCode: ");
-  print(response.statusCode);
-
-  // return 200;
-  //return int.parse(response.statusCode);
+  ); 
   return response.statusCode;
 } 
 
@@ -137,9 +103,7 @@ Future<int> deleteUser(uid) async {
     body: jsonEncode(<String, String>{
       "uid": uid,
     }),
-  );
-  print("cadUser: response.body: ");
-  print(response.body);
+  ); 
   return response.statusCode;  
 }
 
@@ -161,10 +125,7 @@ Future<int> cadTask(name, description, dateInitial, dateFinish, time, taskCatego
       "time": time,
       "task_category": taskCategory,
     }),
-  );
-
-  print("cadTask: response.body: ");
-  print(response.body);
+  );  
 
   return response.statusCode;
   // return "$response.statusCode";
