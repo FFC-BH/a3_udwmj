@@ -132,7 +132,7 @@ class _MyFormState extends State<MyForm> {
                       dtInicio.text,
                       dtFim.text,
                       _DropdownFieldState.categoria.toString(),
-                      "Em Progresso");
+                      'Em Progresso');
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const Dashboard()),

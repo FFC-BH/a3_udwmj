@@ -2,7 +2,6 @@ import 'package:a3_udwmj/view/home.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:a3_udwmj/controller/db_sqlite.dart';
-//import 'package:a3_udwmj/controller/api_sdm.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart'
     show databaseFactory, databaseFactoryFfi, sqfliteFfiInit;
 import 'package:provider/provider.dart';
@@ -11,9 +10,7 @@ void main() async {
   sqfliteFfiInit();
   databaseFactory = databaseFactoryFfi;
   db_sqlite().openMyDatabase();
-
-  //sincronize(30);
-
+ 
   runApp(
     ChangeNotifierProvider(
       create: (_) => ThemeProvider(),
@@ -34,17 +31,14 @@ class MainApp extends StatelessWidget {
   );
 
   bool temaEscuroAtivo = false;
-
-  // void alternarTema() {
-  // setState(() {
-  //   temaEscuroAtivo = !temaEscuroAtivo;
-  // });
+ 
 
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     return MaterialApp(
       useInheritedMediaQuery: true,
+      debugShowCheckedModeBanner: false,
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
       theme: ThemeData.light(),
@@ -75,7 +69,7 @@ void mostrarErro(BuildContext context, String mensagem) {
   );
 }
 
-// Função para mostrar um pop-up de sucesso
+
 void mostrarSucesso(BuildContext context, String mensagem) {
   showDialog(
     context: context,

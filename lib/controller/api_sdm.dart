@@ -46,6 +46,23 @@ Future<int> conect() async {
   final response = await http.get(Uri.parse(url));
   return response.statusCode;
 }
+/*
+{
+    "message": "Usuário cadastrado com sucesso!",
+    "user": {
+        "uid": "80DDvhs6UAOVcRJPi7oWPbLGM652",
+        "email": "fbnfdcs@gmail.com",
+        "nome": "Fabiano"
+    }
+}
+
+{
+    "message": "Login bem-sucedido",
+    "uid": "80DDvhs6UAOVcRJPi7oWPbLGM652",
+    "email": "fbnfdcs@gmail.com"
+}
+*/
+
 
 Future<int> cadUser(email, senha, nome) async {
   final response = await http.post(

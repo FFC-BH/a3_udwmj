@@ -1,44 +1,35 @@
 # a3_udwmj
 
-## TODO ##
+Fabiano Figueredo Chaves
+RA: 324118586
 
-> Controller:
-  - Sincronizar sqflite e api;
+Renato Comarú Matos
+RA: 1292314966
 
-> View:
-   
-  - Popup de sucesso ou erro em campos(ausencia de dados) e ops;
+Viviane da Costa Ferreira
+RA: 1262429956
 
-  - Melhorar validação e mostrar os erros;
-
-
-  >> Setings:
-    
-    - Modo claro e escuro;
-
-  >> Perfil:
+Lívia Silva Lima
+RA: 824157723
 
 
-////////////////////////////////////////////////
-// Identação no Linux --> Ctrl + Shift + I    //
-// Identação no Windos -->                    //
-////////////////////////////////////////////////
 
 
-Sites que podem ajudar:
 
-- [Medium - Integração de SQLite em Flutter (CRUD)](https://medium.com/@purvangsuvagiya/a-step-by-step-guide-to-integrate-sqlite-in-your-flutter-app-crud-696f50f4f481)
-- [YouTube - Tutorial de SQLite em Flutter](https://www.youtube.com/watch?v=A2k290Fj_UA)
-- [JSON to Dart Converter](https://javiercbk.github.io/json_to_dart/)
-- [XML to Dart Converter](https://jsonformatter.org/xml-to-dart)
-- [FlutterViz - Criador de Interfaces Flutter](https://app.flutterviz.com/)
-- [Live Preview de Widgets no Flutter: sem emulador, sem build!](https://www.youtube.com/watch?v=IjGrYy7HfFA)
-- [Dive into DevTools]
-  https://www.youtube.com/watch?v=_EYk-E29edo&t=172s
-  https://www.youtube.com/watch?v=Jakrc3Tn_y4
-  https://medium.com/flutter/how-to-debug-layout-issues-with-the-flutter-inspector-87460a7b9db
-- [FlutterFlow] https://www.flutterflow.io/
-- [modal_bottom_sheet] (https://www.youtube.com/watch?v=Tqcxf5JV9Ak)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Resumo do que temos até agora pelo GithubCopilot:
 

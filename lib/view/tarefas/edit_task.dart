@@ -48,6 +48,7 @@ class _MyFormState extends State<MyTask> {
       descricao.text = dados['descricao']!.toString();
       dtInicio.text = dados['data_inicial']!.toString();
       dtFim.text = dados['data_final']!.toString();
+      DropdownUtils.StatusDropdownValue = dados['status']!.toString();
       _DropdownFieldState.categoria = dados['categoria']!.toString();
     });
   }
@@ -156,7 +157,7 @@ class _MyFormState extends State<MyTask> {
                       dtInicio.text,
                       dtFim.text,
                       _DropdownFieldState.categoria.toString(),
-                      "status");
+                      DropdownUtils.StatusDropdownValue.toString());
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const Task()),

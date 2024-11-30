@@ -46,7 +46,7 @@ class _MyFormState extends State<MyTask> {
   final TextEditingController dtFim = TextEditingController();
   final TextEditingController titulo = TextEditingController();
   final TextEditingController descricao = TextEditingController();
-  //final TextEditingController categoria = TextEditingController();
+  final TextEditingController categoria = TextEditingController();
 
   @override
   void initState() {
