@@ -8,10 +8,6 @@ import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart'
     show ConflictAlgorithm, Database, getDatabasesPath, openDatabase;
 
-// return await openDatabase('/home/fabiano/Documentos/Una/S2-2024/UDWMJ/Flutter/trabalho_a3/a3_udwmj/taskify.db',
-
-// join(...) = .../a3_udwmj/.dart_tool/sqflite_common_ffi/databases/taskify.db
-
 class db_sqlite {
   Future<Database> openMyDatabase() async {
     return await openDatabase(join(await getDatabasesPath(), 'taskify.db'),
@@ -76,18 +72,7 @@ class db_sqlite {
         where: 'id = ?',
         whereArgs: [id]);
   }
-/*
-  Future<List<Map<String, dynamic>>> getUsers() async {
-    final db = await openMyDatabase();
-    return await db.query('usuario');
-  }
 
-  Future<List<Map<String, dynamic>>> getUserById(int id) async {
-    final db = await openMyDatabase();
-    return await db.query('usuario',
-        columns: ['nome', 'email'], where: 'id = ?', whereArgs: [id]);
-  }
-*/
   Future<String> searchUserByEmail(String email) async {
     final db = await openMyDatabase();
 
@@ -112,8 +97,7 @@ class db_sqlite {
 
     return usr[0];
   }
-  
-  
+    
 
   // CRUD para Tarefas
 
@@ -162,7 +146,6 @@ class db_sqlite {
         whereArgs: [id]
     )//;
     );
-
 
   }
 

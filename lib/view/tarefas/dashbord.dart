@@ -37,11 +37,11 @@ class _CardListScreenState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(      
       appBar: AppBar(
         title: const Text('Dashboard'),
         leading: Padding(
-          padding: const EdgeInsets.all(8.0), // Adiciona margem à imagem
+          padding: const EdgeInsets.all(8.0),
           child: Image.asset(
             'assets/Taskify.png',
             fit: BoxFit.contain,

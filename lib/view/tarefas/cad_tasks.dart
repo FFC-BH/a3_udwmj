@@ -210,7 +210,7 @@ class _DropdownFieldState extends State<DropdownField> {
 
   final List<String> options = [
     'Tarefa',
-    'Evento',
+    'Lembrete',
   ];
 
   @override
