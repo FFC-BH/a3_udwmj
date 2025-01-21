@@ -1,5 +1,18 @@
 /*
 CRUD
+
+  // Entrada de texto para gerar o hash
+  String input = "Olá, mundo!";
+
+  // Converte a entrada para bytes usando utf8
+  List<int> bytes = utf8.encode(input);
+
+  // Gera o hash MD5
+  Digest md5Hash = md5.convert(bytes);
+
+  // Exibe o hash em formato hexadecimal
+  print("Hash MD5: ${md5Hash.toString()}");
+
 */
 
 import 'package:a3_udwmj/controller/api_sdm.dart';
@@ -8,18 +21,24 @@ import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart'
     show ConflictAlgorithm, Database, getDatabasesPath, openDatabase;
 
+import 'dart:convert'; // Para usar utf8
+// ignore: depend_on_referenced_packages
+import 'package:crypto/crypto.dart'; // Pacote que contém o MD5    
+
 class db_sqlite {
   Future<Database> openMyDatabase() async {
     return await openDatabase(join(await getDatabasesPath(), 'taskify.db'),
         version: 1, onCreate: (db, version) async {
-      return db.execute('''
+      //return db.execute('''
+      db.execute('''
             PRAGMA foreign_keys = ON;
             CREATE TABLE IF NOT EXISTS usuario (
               id INTEGER PRIMARY KEY AUTOINCREMENT,
               apiId TEXT,
               nome TEXT NOT NULL,
               email TEXT NOT NULL,
-              senha TEXT NOT NULL
+              senha TEXT NOT NULL,
+              hash TEXT
             );
             CREATE TABLE IF NOT EXISTS tarefa (
               id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -32,25 +51,45 @@ class db_sqlite {
               time TEXT,
               categoria TEXT,
               status TEXT,
+              hash TEXT,
               FOREIGN KEY (usuarioId) REFERENCES usuario (id) ON DELETE CASCADE
-           );            
-           ''');
+           ); 
+           CREATE TABLE IF NOT EXISTS metadata (              
+              name TEXT,
+              ult_modif TEXT,
+              hash_md5 TEXT              
+           );          
+           '''); 
+           db.insert('metadata', {'name': 'bd', 'ult_modif': '', 'hash_md5': ''});
+           db.insert('metadata', {'name': 'usuario', 'ult_modif': '', 'hash_md5': ''});
+           db.insert('metadata', {'name': 'tarefa', 'ult_modif': '', 'hash_md5': ''});                     
     });
   }
 
   Future<void> insertUser(String nome, String email, String senha) async {
+   
     final db = await openMyDatabase();
 
+    String input = nome + email + senha;
+    List<int> bytes = utf8.encode(input);
+    Digest md5Hash = md5.convert(bytes);
+    String output = md5Hash.toString();
+   
     db.insert(
         'usuario',
         {
           'nome': nome,
           'email': email,
           'senha': senha,
+          'hash': output,
         },
-        conflictAlgorithm: ConflictAlgorithm.replace);
+        conflictAlgorithm: ConflictAlgorithm.replace);   
+    
+    db.update('metadata', {'ult_modif': DateTime.now().toString(), 'hash_md5': output}, 
+        where: 'ROWID = ?', whereArgs: [2]);
 
-    cadUser(email, senha, nome);
+       
+   // cadUser(email, senha, nome);
 
   }
 
@@ -105,6 +144,11 @@ class db_sqlite {
     
     final db = await openMyDatabase();
 
+    String input = usuarioId.toString() + titulo + descricao + dataInicial + dataFinal + categoria + status;
+    List<int> bytes = utf8.encode(input);
+    Digest md5Hash = md5.convert(bytes);
+    String output = md5Hash.toString();
+
     await db.insert(
         'tarefa',
         {
@@ -116,8 +160,11 @@ class db_sqlite {
           'data_final': dataFinal,
           'categoria': categoria,
           'status': status,
+          'hash': output,
         },
         conflictAlgorithm: ConflictAlgorithm.replace);
+
+        
   }
 
   Future<void> deleteTask(int id) async {

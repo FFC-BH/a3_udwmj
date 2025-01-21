@@ -10,13 +10,16 @@ void main() async {
   sqfliteFfiInit();
   databaseFactory = databaseFactoryFfi;
   db_sqlite().openMyDatabase();
- 
+
+  db_sqlite().insertUser('FFC', 'fabiano@figueredo', '12345');
+ /*
   runApp(
     ChangeNotifierProvider(
       create: (_) => ThemeProvider(),
       child: MainApp(),
     ),
   );
+*/
 }
 
 class MainApp extends StatelessWidget {
